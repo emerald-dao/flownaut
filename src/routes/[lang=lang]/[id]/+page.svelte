@@ -1,7 +1,7 @@
 <script type="ts">
 	import { page } from '$app/stores';
 	import { transformUrlToHeading } from '$lib/utilities/dataTransformation/transformUrlToHeading';
-	import { Breadcrumbs, Button, Seo } from '@emerald-dao/component-library';
+	import { Button, Seo } from '@emerald-dao/component-library';
 	import { user } from '$stores/flow/FlowStore';
 	import TableOfContent from '$lib/components/mdsvex/TableOfContent.svelte';
 	import Icon from '@iconify/svelte';
@@ -9,16 +9,11 @@
 	import IconCircle from '$lib/components/atoms/IconCircle.svelte';
 	import { getUserChallengeStatus } from '$lib/utilities/api/flownaut/getUserChallengeStatus';
 	import { submitChallenge } from '$lib/utilities/api/flownaut/submitChallenge';
-	import ExamplesLayout from '$lib/components/mdsvex/FlownautLayout.svelte';
 
 	export let data;
 	console.log(data);
 
 	$: routes = [
-		{
-			path: `/${$page.params.lang}/flownaut`,
-			label: 'Flownaut'
-		},
 		{
 			path: `/${$page.params.lang}/flownaut/${data.overview.slug}`,
 			label: transformUrlToHeading(data.overview.title)
@@ -40,8 +35,6 @@
 
 <section class="container">
 	<div class="main-wrapper">
-		<Breadcrumbs {routes} />
-
 		<article>
 			<svelte:component this={data.readme} />
 		</article>
@@ -68,7 +61,7 @@
 
 		<Button on:click={() => createNewInstance($page.params.id)}>
 			<Icon icon="tabler:file-import" />
-			Create Instance
+			Start Challenge
 		</Button>
 
 		<Button on:click={() => submitChallenge($page.params.id)}>
