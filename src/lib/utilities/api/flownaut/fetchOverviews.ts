@@ -1,17 +1,15 @@
 import type { Locales } from '$i18n/i18n-types';
 import type { Overview } from '$lib/types/content/content-overview.interface';
 
-export const fetchOverviews = async (
-	locale?: Locales
-) => {
-	let overviews = import.meta.glob('/src/lib/content/flownaut/**/**/*.ts');
+export const fetchOverviews = async (locale?: Locales) => {
+	const overviews = import.meta.glob('/src/lib/content/flownaut/**/**/*.ts');
 
 	const iterableFiles = Object.entries(overviews);
 
 	const thisLangFiles = locale
 		? iterableFiles.filter(([path]) => {
-			return path.split('/')[6] == locale;
-		})
+				return path.split('/')[6] == locale;
+		  })
 		: iterableFiles;
 
 	const allOverviews = await Promise.all(

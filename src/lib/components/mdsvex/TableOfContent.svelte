@@ -87,7 +87,7 @@
 
 <svelte:window on:scroll={trackScroll} />
 
-<div class="column-10">
+<div class="main-wrapper column-10">
 	{#if author}
 		<Author
 			name={author.name}
@@ -119,6 +119,12 @@
 </div>
 
 <style lang="scss">
+	.main-wrapper {
+		border-left: 0.5px solid var(--clr-border-primary);
+		padding-block: var(--space-9);
+		padding-left: var(--space-4);
+	}
+
 	.no-margin {
 		margin: 0px;
 	}

@@ -1,13 +1,11 @@
 <script type="ts">
-	import { InputWrapper } from '@emerald-dao/component-library';
-	import { locale, LL } from '$i18n/i18n-svelte';
+	import { LL } from '$i18n/i18n-svelte';
 	import { createSearchStore, searchHandler } from '$stores/searchBar';
 	import { onDestroy } from 'svelte';
 	import { Seo } from '@emerald-dao/component-library';
+	import ChallengeCard from '$lib/components/flownaut/ChallengeCard.svelte';
 
 	export let data;
-
-	console.log(data);
 
 	$: searchCadence = data.flownauts.map((example) => ({
 		...example,
@@ -23,28 +21,21 @@
 	});
 </script>
 
-<section class="container-small column-10">
-	<h1>Flownaut</h1>
+<section class="container-medium section-large column-6">
+	<div class="title-wrapper">
+		<h1 class="w-medium">Flownaut</h1>
+		<p class="large">Join us in our journey exploring the Flow Blockchain.</p>
+	</div>
 	{#if data.flownauts.length === 0}
 		<p><em>{$LL.NO_EXAMPLES_FOUND()}</em></p>
 	{:else}
-		<div class="main-wrapper">
-			<div class="sidebar">
-				<h5>{$LL.SEARCH()}</h5>
-				<InputWrapper name="search" errors={[]} isValid={false} icon="tabler:search">
-					<input type="text" placeholder="Search..." bind:value={$searchStore.search} />
-				</InputWrapper>
-			</div>
-			<div class="main">
-				{#if $searchStore.search.length > 0 && $searchStore.filtered.length === 0}
-					<p>No results found</p>
-				{/if}
-				{#each $searchStore.filtered as content, i}
-					<a class="card heading" href={`/${$locale}/${content.slug.split('/')[1]}`}
-						>{`${i + 1}. ${content.title}`}</a
-					>
-				{/each}
-			</div>
+		<div class="main">
+			{#if $searchStore.search.length > 0 && $searchStore.filtered.length === 0}
+				<p>No results found</p>
+			{/if}
+			{#each $searchStore.filtered as content, i}
+				<ChallengeCard challenge={content} {i} completed={i === 1 || i === 3 || i === 4} />
+			{/each}
 		</div>
 	{/if}
 </section>
@@ -58,51 +49,20 @@
 
 <style type="scss">
 	section {
-		.main-wrapper {
+		.title-wrapper {
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-5);
+			gap: var(--space-3);
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			margin-bottom: var(--space-10);
+		}
 
-			@include mq(small) {
-				display: grid;
-				grid-template-columns: 1fr 3fr;
-				gap: var(--space-10);
-			}
-			.sidebar {
-				display: flex;
-				flex-direction: column;
-				border-bottom: var(--border-width-primary) var(--clr-border-primary) solid;
-				padding-bottom: var(--space-5);
-
-				@include mq(small) {
-					border-right: var(--border-width-primary) var(--clr-border-primary) solid;
-					border-bottom: 0;
-					height: fit-content;
-					padding-bottom: var(--space-8);
-					padding-right: var(--space-10);
-					position: sticky;
-					top: 100px;
-					gap: 0;
-				}
-
-				h5 {
-					font-size: var(--font-size-4);
-					margin-bottom: var(--space-2);
-					margin-top: 0;
-				}
-			}
-
-			.main {
-				display: flex;
-				flex-direction: column;
-				gap: var(--space-5);
-
-				.card {
-					text-decoration: none;
-					padding: var(--space-4) var(--space-6);
-					transition: 0.3s;
-				}
-			}
+		.main {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: var(--space-4) var(--space-13);
 		}
 	}
 </style>

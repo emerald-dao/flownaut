@@ -1,9 +1,3 @@
----
-layout: examples
----
-
-# Fallback
-
 Declare a contract called `HelloWorld`.
 
 Initialize a `greet` variable to "Hello, World!"

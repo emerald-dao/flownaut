@@ -16,7 +16,7 @@
 	{:else}
 		<img src="/new-avatar.png" alt="Generic avatar" />
 	{/if}
-	<div class="column">
+	<div class="column align-start">
 		{#if challengeAuthor}
 			<p class="author-word">Completed by</p>
 		{:else}
@@ -36,7 +36,7 @@
 			{/if}
 			{#if isVerified}
 				<div data-tooltip="This author is from Emerald City">
-					<Icon icon="material-symbols:verified-outline-rounded" color="var(--clr-primary-main)" />
+					<Icon icon="material-symbols:verified" color="var(--clr-primary-main)" width="0.7em" />
 				</div>
 			{/if}
 		</div>
@@ -48,8 +48,8 @@
 		align-items: center;
 
 		img {
-			width: 40px;
-			height: 40px;
+			width: 35px;
+			height: 35px;
 			border-radius: 50%;
 			margin-block: 0;
 		}

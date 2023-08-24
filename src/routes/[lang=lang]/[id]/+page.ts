@@ -1,10 +1,10 @@
 import type { Locales } from '$i18n/i18n-types.js';
-import type { Flownaut } from '$lib/types/content/flownaut.interface';
+import type { FlownautWithSlug } from '$lib/types/content/flownaut.interface';
 import { fetchOverviews } from '$lib/utilities/api/flownaut/fetchOverviews';
 import { getUserChallengeStatus } from '$lib/utilities/api/flownaut/getUserChallengeStatus';
 import { error } from '@sveltejs/kit';
 
-export const load = async ({ fetch, params }) => {
+export const load = async ({ params }) => {
 	try {
 		const overviewFile = await import(
 			`../../../lib/content/flownaut/${params.id}/${params.lang}/overview.ts`
@@ -13,7 +13,7 @@ export const load = async ({ fetch, params }) => {
 			`../../../lib/content/flownaut/${params.id}/${params.lang}/readme.md`
 		);
 
-		const content = await fetchOverviews(params.lang as Locales) as Flownaut[];
+		const content = (await fetchOverviews(params.lang as Locales)) as FlownautWithSlug[];
 
 		return {
 			overview: overviewFile.overview,

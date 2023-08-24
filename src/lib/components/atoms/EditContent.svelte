@@ -6,7 +6,13 @@
 	export let target: '_blank' | '_self' | '_parent' | '_top';
 </script>
 
-<Button width="full-width" size="small" type="ghost" color="neutral" {href} {target}>
+<a {href} {target} class="sidebar-link">
 	<Icon icon="tabler:brand-github" />
 	Edit Content
-</Button>
+</a>
+
+<style lang="scss">
+	a {
+		font-size: var(--font-size-2);
+	}
+</style>

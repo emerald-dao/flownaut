@@ -3,15 +3,14 @@
 	import { transformUrlToHeading } from '$lib/utilities/dataTransformation/transformUrlToHeading';
 	import { Button, Seo } from '@emerald-dao/component-library';
 	import { user } from '$stores/flow/FlowStore';
-	import TableOfContent from '$lib/components/mdsvex/TableOfContent.svelte';
 	import Icon from '@iconify/svelte';
 	import { createNewInstance } from '$lib/utilities/api/flownaut/createNewInstance';
-	import IconCircle from '$lib/components/atoms/IconCircle.svelte';
 	import { getUserChallengeStatus } from '$lib/utilities/api/flownaut/getUserChallengeStatus';
 	import { submitChallenge } from '$lib/utilities/api/flownaut/submitChallenge';
+	import ChallengeStatus from '$lib/components/flownaut/ChallengeStatus.svelte';
+	import Author from '$lib/components/atoms/Author.svelte';
 
 	export let data;
-	console.log(data);
 
 	$: routes = [
 		{
@@ -27,47 +26,51 @@
 
 	async function refreshChallengeStatus() {
 		data.status = await getUserChallengeStatus($page.params.id);
-		console.log(data.status);
 	}
 
 	$: $user && refreshChallengeStatus();
 </script>
 
-<section class="container">
+<section
+	class="introduction center column-8"
+	style={`background-image: linear-gradient(
+    to bottom,
+    rgba(18, 18, 18, 0.90),
+    rgba(18, 18, 18, 0.99)
+  ), url("/flownaut/flownaut_${data.overview.slug.split('/')[1].charAt(0)}.png")`}
+>
+	<div class="column-2">
+		<h1 class="w-medium">{data.overview.title}</h1>
+		{#if data.overview.description}
+			<p>{data.overview.description}</p>
+		{/if}
+	</div>
+	<ChallengeStatus status={data.status} />
+	<Author
+		name={data.overview.author.name}
+		avatarUrl={data.overview.author.avatarUrl}
+		socialMediaUrl={data.overview.author.socialMediaUrl}
+		isVerified={data.overview.author.isVerified}
+		walletAddress={data.overview.author.walletAddress}
+	/>
+</section>
+<section class="main-section container-small">
 	<div class="main-wrapper">
 		<article>
 			<svelte:component this={data.readme} />
 		</article>
 
-		{#if data.status === 'IN PROGRESS'}
-			<div class="row-2">
-				<IconCircle icon="tabler:clock" color="tertiary" />
-				<span>In Progress</span>
-			</div>
-		{:else if data.status === 'COMPLETED'}
-			<div class="row-2">
-				<IconCircle icon="tabler:check" color="neutral" />
-				<span>Completed</span>
-			</div>
-		{:else if data.status === 'NOT LOGGED IN'}
-			<div class="row-2">
-				<span>Please log in to view your status.</span>
-			</div>
-		{:else if data.status === 'NOT STARTED'}
-			<div class="row-2">
-				<span>Not Started</span>
-			</div>
-		{/if}
+		<div class="row-4">
+			<Button on:click={() => createNewInstance($page.params.id)}>
+				<Icon icon="tabler:file-import" />
+				Start Challenge
+			</Button>
 
-		<Button on:click={() => createNewInstance($page.params.id)}>
-			<Icon icon="tabler:file-import" />
-			Start Challenge
-		</Button>
-
-		<Button on:click={() => submitChallenge($page.params.id)}>
-			<Icon icon="tabler:file-import" />
-			Submit
-		</Button>
+			<Button on:click={() => submitChallenge($page.params.id)}>
+				<Icon icon="tabler:file-import" />
+				Submit
+			</Button>
+		</div>
 
 		<div class="adjacents-wrapper">
 			{#if previousExample}
@@ -98,9 +101,6 @@
 			{/if}
 		</div>
 	</div>
-	<div class="toc-wrapper">
-		<TableOfContent headings={data.metadata.headings} />
-	</div>
 </section>
 
 <Seo
@@ -111,22 +111,19 @@
 />
 
 <style type="scss">
-	section {
+	.introduction {
+		text-align: center;
+		background-position: top;
+		padding-block: var(--space-20);
+		border-bottom: 0.5px solid var(--clr-border-primary);
+	}
+
+	.main-section {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-7);
 
-		@include mq(medium) {
-			display: grid;
-			grid-template-columns: 4fr 1fr;
-		}
-
 		.main-wrapper {
-			@include mq(medium) {
-				width: 90%;
-				overflow: hidden;
-			}
-
 			.adjacents-wrapper {
 				display: flex;
 				flex-direction: column;
@@ -170,17 +167,6 @@
 						text-align: end;
 					}
 				}
-			}
-		}
-
-		.toc-wrapper {
-			display: none;
-
-			@include mq(medium) {
-				display: block;
-				position: sticky;
-				top: 140px;
-				height: fit-content;
 			}
 		}
 	}
