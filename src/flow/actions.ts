@@ -21,9 +21,9 @@ export const unauthenticate = () => fcl.unauthenticate();
 export const logIn = async () => await fcl.logIn();
 export const signUp = () => fcl.signUp();
 
-async function createNewInstance(challengeId: string) {
-	console.log(`Deploying new ${challengeId} contract...`)
-	const contractCode = (await import(`../lib/content/flownaut/${challengeId}/en/contract.cdc?raw`)).default;
+async function createNewInstance(levelId: string) {
+	console.log(`Deploying new ${levelId} contract...`)
+	const contractCode = (await import(`../lib/content/flownaut/${levelId}/en/contract.cdc?raw`)).default;
 	const hexCode = Buffer.from(contractCode).toString('hex');
 	const contractName = getContractNameFromContractCode(contractCode);
 
@@ -66,8 +66,8 @@ async function createNewInstance(challengeId: string) {
 	});
 }
 
-export const createNewInstanceExecution = (challengeId: string, actionAfterSucceed: (res: TransactionStatusObject) => Promise<ActionExecutionResult>) =>
-	executeTransaction(() => createNewInstance(challengeId), actionAfterSucceed);
+export const createNewInstanceExecution = (levelId: string, actionAfterSucceed: (res: TransactionStatusObject) => Promise<ActionExecutionResult>) =>
+	executeTransaction(() => createNewInstance(levelId), actionAfterSucceed);
 
 export const getBalance = async (address: string) => {
 	try {

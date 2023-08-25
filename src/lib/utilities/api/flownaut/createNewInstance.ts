@@ -7,9 +7,9 @@ import type { TransactionStatusObject } from '@onflow/fcl';
 import { createNewInstanceExecution } from "$flow/actions";
 import type { ActionExecutionResult } from "$stores/custom/steps/step.interface";
 
-export async function createNewInstance(challengeId: string) {
+export async function createNewInstance(levelId: string) {
     try {
-        const saveChallengeStatus: (
+        const saveLevelStatus: (
             res: TransactionStatusObject
         ) => Promise<ActionExecutionResult> = async (executionResult: TransactionStatusObject) => {
             const [accountCreatedEvent] = executionResult.events.filter((event) =>
@@ -21,7 +21,7 @@ export async function createNewInstance(challengeId: string) {
                 method: 'POST',
                 body: JSON.stringify({
                     user: get(user),
-                    challenge_id: challengeId,
+                    level_id: levelId,
                     contract_address
                 }),
                 headers: {
@@ -32,7 +32,7 @@ export async function createNewInstance(challengeId: string) {
             return result;
         }
 
-        return await createNewInstanceExecution(challengeId, saveChallengeStatus);
+        return await createNewInstanceExecution(levelId, saveLevelStatus);
     } catch (e) {
         console.log(e)
         return { error: e };

@@ -1,21 +1,21 @@
 <script lang="ts">
-	import { user } from './../../stores/flow/FlowStore';
+	import { user } from '../../stores/flow/FlowStore';
 	import { locale } from '$i18n/i18n-svelte';
 	import type { FlownautWithSlug } from '$lib/types/content/flownaut.interface';
-	import type { ChallengeState } from '$lib/types/flownaut/challenge-state.interface';
+	import type { LevelState } from '$lib/types/flownaut/level-state.interface';
 	import { onMount } from 'svelte';
 	import Author from '../atoms/Author.svelte';
-	import ChallengeStatus from './ChallengeStatus.svelte';
-	import { getUserChallengeInfo } from '$lib/utilities/api/flownaut/getUserChallengeInfo';
+	import LevelStatus from './LevelStatus.svelte';
+	import { getUserLevelInfo } from '$lib/utilities/api/flownaut/getUserLevelInfo';
 
-	export let challenge: FlownautWithSlug;
+	export let level: FlownautWithSlug;
 	export let i: number;
 
-	let status: ChallengeState;
+	let status: LevelState;
 
 	async function getStatus() {
 		if ($user.addr) {
-			status = (await getUserChallengeInfo(challenge.slug.split('/')[1])).status;
+			status = (await getUserLevelInfo(level.slug.split('/')[1])).status;
 
 			if (!status) {
 				status = 'NOT STARTED';
@@ -34,7 +34,7 @@
 	$: completed = status === 'COMPLETED';
 </script>
 
-<a class="card heading" href={`/${$locale}/${challenge.slug.split('/')[1]}`} class:completed>
+<a class="card heading" href={`/${$locale}/${level.slug.split('/')[1]}`} class:completed>
 	<div class="image-wrapper">
 		<div
 			class="circle center w-medium"
@@ -59,18 +59,18 @@
 	</div>
 	<div class="column-7 align-center content-wrapper">
 		<div class="column-2">
-			<h3 class="w-medium">{`${challenge.title}`}</h3>
-			{#if challenge.description}
-				<p class="small description">{challenge.description}</p>
+			<h3 class="w-medium">{`${level.title}`}</h3>
+			{#if level.description}
+				<p class="small description">{level.description}</p>
 			{/if}
 		</div>
-		<ChallengeStatus {status} />
+		<LevelStatus {status} />
 		<Author
-			name={challenge.author.name}
-			avatarUrl={challenge.author.avatarUrl}
-			socialMediaUrl={challenge.author.socialMediaUrl}
-			isVerified={challenge.author.isVerified}
-			walletAddress={challenge.author.walletAddress}
+			name={level.author.name}
+			avatarUrl={level.author.avatarUrl}
+			socialMediaUrl={level.author.socialMediaUrl}
+			isVerified={level.author.isVerified}
+			walletAddress={level.author.walletAddress}
 		/>
 	</div>
 </a>

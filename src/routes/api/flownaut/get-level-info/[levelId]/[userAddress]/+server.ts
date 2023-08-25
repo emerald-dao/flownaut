@@ -10,7 +10,7 @@ export const GET = async ({ params }) => {
         .from('flownaut')
         .select('completed, contract_address')
         .eq('user_address', params.userAddress)
-        .eq('challenge_id', params.challengeId);
+        .eq('level_id', params.levelId);
 
     if (!data || data.length === 0) {
         return json({ status: 'NOT STARTED', contract_address: '' })

@@ -1,4 +1,4 @@
-import type { ChallengeState } from '../flownaut/challenge-state.interface';
+import type { LevelState } from '../flownaut/level-state.interface';
 import type { Author } from './content-overview.interface';
 
 export interface Flownaut {
@@ -8,7 +8,7 @@ export interface Flownaut {
 }
 
 export interface FlownautWithStatusAndSlug extends Flownaut {
-	status: ChallengeState;
+	status: LevelState;
 	slug: string;
 }
 

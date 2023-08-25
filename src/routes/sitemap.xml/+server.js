@@ -27,7 +27,7 @@ export async function GET() {
                 <priority>0.80</priority>
             </url>
             <url>
-                <loc>https://academy.ecdao.org/en/cadence-challenges</loc>
+                <loc>https://academy.ecdao.org/en/cadence-levels</loc>
                 <lastmod>2023-05-30T18:16:23+00:00</lastmod>
                 <priority>0.80</priority>
             </url>
@@ -167,17 +167,17 @@ export async function GET() {
                 <priority>0.64</priority>
             </url>
             <url>
-                <loc>https://academy.ecdao.org/en/cadence-challenges/missing-royalties</loc>
+                <loc>https://academy.ecdao.org/en/cadence-levels/missing-royalties</loc>
                 <lastmod>2023-05-30T18:16:23+00:00</lastmod>
                 <priority>0.64</priority>
             </url>
             <url>
-                <loc>https://academy.ecdao.org/en/cadence-challenges/simple-profile</loc>
+                <loc>https://academy.ecdao.org/en/cadence-levels/simple-profile</loc>
                 <lastmod>2023-05-30T18:16:23+00:00</lastmod>
                 <priority>0.64</priority>
             </url>
             <url>
-                <loc>https://academy.ecdao.org/en/cadence-challenges/example-challenge</loc>
+                <loc>https://academy.ecdao.org/en/cadence-levels/example-level</loc>
                 <lastmod>2023-05-30T18:16:23+00:00</lastmod>
                 <priority>0.64</priority>
             </url>

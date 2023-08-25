@@ -6,8 +6,8 @@ Disallow: /*/catalog/courses/*/*/*
 Allow: /*
 Allow: /*/catalog
 Allow: /*/cadence-by-example
-Allow: /*/cadence-challenges
-Allow: /*/cadence-challenges/*
+Allow: /*/cadence-levels
+Allow: /*/cadence-levels/*
 Allow: /*/quickstarts
 Allow: /*/catalog/*
 Allow: /*/catalog/courses/*

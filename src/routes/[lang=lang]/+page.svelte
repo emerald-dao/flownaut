@@ -3,7 +3,7 @@
 	import { createSearchStore, searchHandler } from '$stores/searchBar';
 	import { onDestroy } from 'svelte';
 	import { Seo } from '@emerald-dao/component-library';
-	import ChallengeCard from '$lib/components/flownaut/ChallengeCard.svelte';
+	import LevelCard from '$lib/components/flownaut/LevelCard.svelte';
 
 	export let data;
 
@@ -47,7 +47,7 @@
 				<p>No results found</p>
 			{/if}
 			{#each $searchStore.filtered as content, i}
-				<ChallengeCard challenge={content} {i} />
+				<LevelCard level={content} {i} />
 			{/each}
 		</div>
 	{/if}

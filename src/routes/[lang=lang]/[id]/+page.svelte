@@ -4,9 +4,9 @@
 	import { user } from '$stores/flow/FlowStore';
 	import Icon from '@iconify/svelte';
 	import { createNewInstance } from '$lib/utilities/api/flownaut/createNewInstance';
-	import { getUserChallengeInfo } from '$lib/utilities/api/flownaut/getUserChallengeInfo';
-	import { submitChallenge } from '$lib/utilities/api/flownaut/submitChallenge';
-	import ChallengeStatus from '$lib/components/flownaut/ChallengeStatus.svelte';
+	import { getUserLevelInfo } from '$lib/utilities/api/flownaut/getUserLevelInfo';
+	import { submitLevel } from '$lib/utilities/api/flownaut/submitLevel';
+	import LevelStatus from '$lib/components/flownaut/LevelStatus.svelte';
 	import Author from '$lib/components/atoms/Author.svelte';
 	import { onMount } from 'svelte';
 	import { getBalance } from '$flow/actions.ts';
@@ -18,29 +18,29 @@
 
 	$: findExampleIndex = data.content.findIndex((obj) => obj.slug === `flownaut/${$page.params.id}`);
 
-	let startChallengeButtonState: 'active' | 'done' | 'loading' = 'active';
+	let startLevelButtonState: 'active' | 'done' | 'loading' = 'active';
 
-	async function startChallenge() {
-		startChallengeButtonState = 'loading';
+	async function startLevel() {
+		startLevelButtonState = 'loading';
 		const result = await createNewInstance($page.params.id);
 		if (result.error) {
 			alert(result.error);
 		}
-		startChallengeButtonState = 'done';
-		await refreshChallengeStatus();
+		startLevelButtonState = 'done';
+		await refreshLevelStatus();
 	}
 
-	async function refreshChallengeStatus() {
-		data.status = (await getUserChallengeInfo($page.params.id)).status;
+	async function refreshLevelStatus() {
+		data.status = (await getUserLevelInfo($page.params.id)).status;
 		await logData();
 	}
 
 	async function submit() {
-		const { error, success } = await submitChallenge($page.params.id);
+		const { error, success } = await submitLevel($page.params.id);
 		if (!success) {
 			alert(error);
 		} else {
-			await refreshChallengeStatus();
+			await refreshLevelStatus();
 			alert('Great job! You solved ' + data.overview.title);
 		}
 	}
@@ -48,9 +48,9 @@
 	async function logData() {
 		console.clear();
 		if (data.status === 'NOT STARTED') {
-			console.log("Click 'Start Challenge' when you are ready to go.");
+			console.log("Click 'Start Level' when you are ready to go.");
 		} else if (data.status === 'NOT LOGGED IN') {
-			console.log('Log in to view data about this challenge.');
+			console.log('Log in to view data about this level.');
 		} else {
 			console.log('Player Address:', $user.addr);
 			console.log('Contract Address:', data.contract_address);
@@ -61,7 +61,7 @@
 		}
 	}
 
-	$: $user && refreshChallengeStatus();
+	$: $user && refreshLevelStatus();
 
 	onMount(async () => {
 		logData();
@@ -82,7 +82,7 @@
 			<p>{data.overview.description}</p>
 		{/if}
 	</div>
-	<ChallengeStatus status={data.status} />
+	<LevelStatus status={data.status} />
 	<Author
 		name={data.overview.author.name}
 		avatarUrl={data.overview.author.avatarUrl}
@@ -98,17 +98,17 @@
 
 	<div class="row-4">
 		<Button
-			on:click={startChallenge}
+			on:click={startLevel}
 			size="large"
 			type="ghost"
 			color="neutral"
-			state={startChallengeButtonState}
+			state={startLevelButtonState}
 			statusIconsPosition="left"
 		>
-			{#if startChallengeButtonState !== 'loading'}
+			{#if startLevelButtonState !== 'loading'}
 				<Icon icon="tabler:flag" />
 			{/if}
-			Start Challenge
+			Start Level
 		</Button>
 
 		{#if data.status === 'IN PROGRESS'}

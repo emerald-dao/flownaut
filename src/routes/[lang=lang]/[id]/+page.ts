@@ -1,7 +1,7 @@
 import type { Locales } from '$i18n/i18n-types.js';
 import type { FlownautWithSlug } from '$lib/types/content/flownaut.interface';
 import { fetchOverviews } from '$lib/utilities/api/flownaut/fetchOverviews';
-import { getUserChallengeInfo } from '$lib/utilities/api/flownaut/getUserChallengeInfo';
+import { getUserLevelInfo } from '$lib/utilities/api/flownaut/getUserLevelInfo';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ params }) => {
@@ -14,7 +14,7 @@ export const load = async ({ params }) => {
 		);
 
 		const content = (await fetchOverviews(params.lang as Locales)) as FlownautWithSlug[];
-		const { status, contract_address } = await getUserChallengeInfo(params.id)
+		const { status, contract_address } = await getUserLevelInfo(params.id)
 
 		return {
 			overview: overviewFile.overview,

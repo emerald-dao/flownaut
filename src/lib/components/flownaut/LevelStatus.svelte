@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { ChallengeState } from '$lib/types/flownaut/challenge-state.interface';
+	import type { LevelState } from '$lib/types/flownaut/level-state.interface';
 	import Icon from '@iconify/svelte';
 
-	export let status: ChallengeState;
+	export let status: LevelState;
 </script>
 
 {#if status}

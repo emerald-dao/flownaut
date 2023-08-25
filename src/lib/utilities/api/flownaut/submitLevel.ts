@@ -2,7 +2,7 @@ import { logIn } from "$flow/actions";
 import { user } from "$stores/flow/FlowStore";
 import { get } from "svelte/store";
 
-export async function submitChallenge(challengeId: string) {
+export async function submitLevel(levelId: string) {
     if (!get(user).loggedIn) {
         await logIn();
     }
@@ -10,7 +10,7 @@ export async function submitChallenge(challengeId: string) {
         method: 'POST',
         body: JSON.stringify({
             user: get(user),
-            challenge_id: challengeId
+            level_id: levelId
         }),
         headers: {
             'content-type': 'application/json'
