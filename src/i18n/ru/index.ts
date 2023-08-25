@@ -46,13 +46,7 @@ const ru: BaseTranslation = {
 	[ExpertiseEnum.Beginner]: 'Начальный',
 
 	// Quickstarts
-	NO_QUICKSTARTS_FOUND: 'Шаблоны не найдены для этого языка',
-
-	// Challenge
-	CHALLENGE_TITLE: 'Cadence задачи',
-	CHALLENGES_SOLVED: 'Решенные задачи',
-	CHALLENGES_UNSOLVED: 'Нерешенные задачи',
-	NO_CHALLENGES_AVAILABLE: 'Нет доступных задач'
+	NO_QUICKSTARTS_FOUND: 'Шаблоны не найдены для этого языка'
 };
 
 export default ru;

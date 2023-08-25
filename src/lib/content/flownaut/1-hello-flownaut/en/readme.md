@@ -1,15 +1,41 @@
-Declare a contract called `HelloWorld`.
+Welcome to Flownaut! This level walks you through the very basics of how to play the game.
 
-Initialize a `greet` variable to "Hello, World!"
+## Set up a Wallet
+You will need to log in at the top right of this website in order to play the game. You can use any of the available wallets. Make sure you are on the `testnet` network.
 
-Variables must always be initialized in the `init` function.
+## Open the browser's console
+Open your browser's console: Right click your screen > Inspect > Console.
+
+You should see a few messages from the game. While you are playing, you should see the following data:
+1. `Player Address` - this is your wallet's address
+2. `Contract Address` - the address of the contract you deploy, and are interacting with
+3. `Player Balance` - the player's flow token balance
+
+## Get test $FLOW
+To play the game, you will sometimes need test ether. The easiest way to get some testnet ether is via the testnet faucet: https://testnet-faucet.onflow.org/fund-account.
+
+## Starting a challenge
+When you start a challenge, a new contract (the one shown at the bottom of each challenge) will be deployed to a random testnet account. To do so, click the "Start Challenge" button at the bottom of the page. Go do it now and come back!
+
+You should be prompted by your wallet of choice to authorize the transaction. Do so, and you should see some messages in the console. Note that this is deploying a new contract in the blockchain and might take a few seconds, so please be patient when starting a new challenge!
+
+## Interact with the contract to complete the challenge
+To complete a challenge, you will have to interact with your contract on testnet. You can do your own way, or use tools like https://run.ecdao.org. 
+When you know you have completed the challenge, click the "Submit" button at the bottom of the page. This uses a script to determine if you have completed it.
+
+## Completing this challenge
+For this challenge, you will be deploying a very basic contract. All you have to do is change the greeting to `You have been hacked.`.
 
 ```cadence
 pub contract HelloWorld {
-   pub let greet: String
+   pub var greeting: String
+
+   pub fun changeGreeting(newGreeting: String) {
+      self.greeting = newGreeting
+   }
 
    init() {
-      self.greet = "Hello World!"
+      self.greeting = "Hello World!"
    }
 }
 ```

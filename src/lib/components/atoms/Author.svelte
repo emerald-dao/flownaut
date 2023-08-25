@@ -7,7 +7,6 @@
 	export let isVerified: boolean;
 	export let walletAddress: string | undefined;
 	export let tip: boolean = true;
-	export let challengeAuthor: boolean = false;
 </script>
 
 <div class="row-2">
@@ -17,11 +16,8 @@
 		<img src="/new-avatar.png" alt="Generic avatar" />
 	{/if}
 	<div class="column align-start">
-		{#if challengeAuthor}
-			<p class="author-word">Completed by</p>
-		{:else}
-			<p class="author-word">Author</p>
-		{/if}
+		<p class="author-word">Author</p>
+
 		<div class="row-1">
 			<a
 				href={socialMediaUrl}

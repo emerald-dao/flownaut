@@ -32,6 +32,7 @@
 
 	async function refreshChallengeStatus() {
 		data.status = (await getUserChallengeInfo($page.params.id)).status;
+		await logData();
 	}
 
 	async function submit() {
@@ -44,15 +45,26 @@
 		}
 	}
 
+	async function logData() {
+		console.clear();
+		if (data.status === 'NOT STARTED') {
+			console.log("Click 'Start Challenge' when you are ready to go.");
+		} else if (data.status === 'NOT LOGGED IN') {
+			console.log('Log in to view data about this challenge.');
+		} else {
+			console.log('Player Address:', $user.addr);
+			console.log('Contract Address:', data.contract_address);
+			if ($user.loggedIn) {
+				const balance = await getBalance($user.addr);
+				console.log('Player Balance:', balance);
+			}
+		}
+	}
+
 	$: $user && refreshChallengeStatus();
 
 	onMount(async () => {
-		console.clear();
-		console.log('Contract address:', data.contract_address);
-		if ($user.loggedIn) {
-			const balance = await getBalance($user.addr);
-			console.log('Flow Balance:', balance);
-		}
+		logData();
 	});
 </script>
 

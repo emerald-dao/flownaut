@@ -46,12 +46,6 @@ const zh: BaseTranslation = {
 
 	// Quickstarts
 	NO_QUICKSTARTS_FOUND: '没有找到该语言的模板',
-
-	// Challenge
-	CHALLENGE_TITLE: 'Cadence 挑战',
-	CHALLENGES_SOLVED: '已解决的挑战',
-	CHALLENGES_UNSOLVED: '未解决的挑战',
-	NO_CHALLENGES_AVAILABLE: '没有可用的挑战'
 };
 
 export default zh;

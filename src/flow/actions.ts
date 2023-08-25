@@ -71,11 +71,10 @@ export const createNewInstanceExecution = (challengeId: string, actionAfterSucce
 
 export const getBalance = async (address: string) => {
 	try {
-		const response = await fcl.query({
+		return await fcl.query({
 			cadence: replaceWithProperValues(getBalanceScript),
 			args: (arg, t) => [arg(address, t.Address)]
 		});
-		return response;
 	} catch (e) {
 		return null;
 	}

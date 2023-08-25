@@ -47,12 +47,6 @@ const en: BaseTranslation = {
 	// Quickstarts
 	MOBILE_QUICKSTARTS: 'Mobile Quickstarts',
 	NO_QUICKSTARTS_FOUND: 'No quickstarts found for this language',
-
-	// Challenge
-	CHALLENGE_TITLE: 'Cadence Challenges',
-	CHALLENGES_SOLVED: 'Challenges Solved',
-	CHALLENGES_UNSOLVED: 'Challenges Unsolved',
-	NO_CHALLENGES_AVAILABLE: 'No challenges available'
 };
 
 export default en;
