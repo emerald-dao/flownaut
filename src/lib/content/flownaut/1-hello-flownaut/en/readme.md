@@ -23,6 +23,7 @@ You should be prompted by your wallet of choice to authorize the transaction. No
 
 ## Interact with the contract to complete the level
 To complete a level, you will have to interact with your contract on testnet. You can do your own way, or use tools like [Run](https://run.ecdao.org) or [run.dnz.dev](https://run.dnz.dev/). 
+
 When you know you have completed the level, click the "Submit" button at the bottom of the page. This uses a script to determine if you have completed it.
 
 ## Completing this level
