@@ -15,9 +15,11 @@ You should see a few messages from the game. While you are playing, you should s
 To play the game, you will sometimes need test ether. The easiest way to get some testnet ether is via the testnet faucet: https://testnet-faucet.onflow.org/fund-account.
 
 ## Starting a level
-When you start a level, a new contract (the one shown at the bottom of each level) will be deployed to a random testnet account. To do so, click the "Start Level" button at the bottom of the page. Go do it now and come back!
+To start a new level, click the "Start Level" button at the bottom of the page. When you do, a new contract (the one shown at the bottom of each level) will be deployed to a random testnet account. Go do it now and come back!
 
-You should be prompted by your wallet of choice to authorize the transaction. Do so, and you should see some messages in the console. Note that this is deploying a new contract in the blockchain and might take a few seconds, so please be patient when starting a new level!
+You should be prompted by your wallet of choice to authorize the transaction. Note that this is deploying a new contract in the blockchain and might take a few seconds, so please be patient when starting a new level!
+
+*You can always restart a level by clicking "Start Level" again.*
 
 ## Interact with the contract to complete the level
 To complete a level, you will have to interact with your contract on testnet. You can do your own way, or use tools like https://run.ecdao.org. 
