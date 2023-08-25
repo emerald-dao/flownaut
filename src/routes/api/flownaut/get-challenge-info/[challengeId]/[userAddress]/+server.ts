@@ -8,15 +8,15 @@ const academySupabase = createClient(PublicEnv.PUBLIC_ACADEMY_SUPABASE_URL, Priv
 export const GET = async ({ params }) => {
     const { data } = await academySupabase
         .from('flownaut')
-        .select('completed')
+        .select('completed, contract_address')
         .eq('user_address', params.userAddress)
         .eq('challenge_id', params.challengeId);
 
     if (!data || data.length === 0) {
-        return json({ status: 'NOT STARTED' })
+        return json({ status: 'NOT STARTED', contract_address: '' })
     } else if (data[0].completed) {
-        return json({ status: 'COMPLETED' })
+        return json({ status: 'COMPLETED', contract_address: data[0].contract_address })
     } else {
-        return json({ status: 'IN PROGRESS' })
+        return json({ status: 'IN PROGRESS', contract_address: data[0].contract_address })
     }
 }

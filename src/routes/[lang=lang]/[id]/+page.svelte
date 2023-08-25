@@ -1,14 +1,15 @@
 <script type="ts">
 	import { page } from '$app/stores';
-	import { transformUrlToHeading } from '$lib/utilities/dataTransformation/transformUrlToHeading';
 	import { Button, Seo } from '@emerald-dao/component-library';
 	import { user } from '$stores/flow/FlowStore';
 	import Icon from '@iconify/svelte';
 	import { createNewInstance } from '$lib/utilities/api/flownaut/createNewInstance';
-	import { getUserChallengeStatus } from '$lib/utilities/api/flownaut/getUserChallengeStatus';
+	import { getUserChallengeInfo } from '$lib/utilities/api/flownaut/getUserChallengeInfo';
 	import { submitChallenge } from '$lib/utilities/api/flownaut/submitChallenge';
 	import ChallengeStatus from '$lib/components/flownaut/ChallengeStatus.svelte';
 	import Author from '$lib/components/atoms/Author.svelte';
+	import { onMount } from 'svelte';
+	import { getBalance } from '$flow/actions.ts';
 
 	export let data;
 
@@ -30,7 +31,7 @@
 	}
 
 	async function refreshChallengeStatus() {
-		data.status = await getUserChallengeStatus($page.params.id);
+		data.status = (await getUserChallengeInfo($page.params.id)).status;
 	}
 
 	async function submit() {
@@ -44,6 +45,15 @@
 	}
 
 	$: $user && refreshChallengeStatus();
+
+	onMount(async () => {
+		console.clear();
+		console.log('Contract address:', data.contract_address);
+		if ($user.loggedIn) {
+			const balance = await getBalance($user.addr);
+			console.log('Flow Balance:', balance);
+		}
+	});
 </script>
 
 <section

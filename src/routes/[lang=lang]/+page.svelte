@@ -34,7 +34,7 @@
 				<p>No results found</p>
 			{/if}
 			{#each $searchStore.filtered as content, i}
-				<ChallengeCard challenge={content} {i} completed={i === 1 || i === 3 || i === 4} />
+				<ChallengeCard challenge={content} {i} />
 			{/each}
 		</div>
 	{/if}

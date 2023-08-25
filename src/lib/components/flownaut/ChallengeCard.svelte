@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 	import Author from '../atoms/Author.svelte';
 	import ChallengeStatus from './ChallengeStatus.svelte';
-	import { getUserChallengeStatus } from '$lib/utilities/api/flownaut/getUserChallengeStatus';
+	import { getUserChallengeInfo } from '$lib/utilities/api/flownaut/getUserChallengeInfo';
 
 	export let challenge: FlownautWithSlug;
 	export let i: number;
@@ -15,7 +15,7 @@
 
 	onMount(async () => {
 		if ($user.addr) {
-			status = await getUserChallengeStatus(challenge.slug.split('/')[1]);
+			status = (await getUserChallengeInfo(challenge.slug.split('/')[1])).status;
 
 			if (!status) {
 				status = 'NOT STARTED';

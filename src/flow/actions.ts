@@ -2,14 +2,13 @@ import './config';
 import * as fcl from '@onflow/fcl';
 import { browser } from '$app/environment';
 import { user } from '$stores/flow/FlowStore';
-import { executeTransaction, getContractNameFromContractCode } from './utils';
+import { executeTransaction, getContractNameFromContractCode, replaceWithProperValues } from './utils';
 import { env as PublicEnv } from '$env/dynamic/public';
 import type { TransactionStatusObject } from '@onflow/fcl';
 import type { ActionExecutionResult } from '$lib/stores/custom/steps/step.interface';
-import { get } from 'svelte/store';
 import { Buffer } from 'buffer';
 
-import getEmeraldIDScript from './cadence/scripts/get_emerald_id.cdc?raw';
+import getBalanceScript from './cadence/scripts/get_balance.cdc?raw';
 
 if (browser) {
 	// set Svelte $user store to currentUser,
@@ -70,10 +69,10 @@ async function createNewInstance(challengeId: string) {
 export const createNewInstanceExecution = (challengeId: string, actionAfterSucceed: (res: TransactionStatusObject) => Promise<ActionExecutionResult>) =>
 	executeTransaction(() => createNewInstance(challengeId), actionAfterSucceed);
 
-export const getEmeraldID = async (address: string) => {
+export const getBalance = async (address: string) => {
 	try {
 		const response = await fcl.query({
-			cadence: getEmeraldIDScript,
+			cadence: replaceWithProperValues(getBalanceScript),
 			args: (arg, t) => [arg(address, t.Address)]
 		});
 		return response;
