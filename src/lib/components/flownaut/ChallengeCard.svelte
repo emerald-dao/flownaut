@@ -13,7 +13,7 @@
 
 	let status: ChallengeState;
 
-	onMount(async () => {
+	async function getStatus() {
 		if ($user.addr) {
 			status = (await getUserChallengeInfo(challenge.slug.split('/')[1])).status;
 
@@ -23,7 +23,13 @@
 		} else {
 			status = 'NOT LOGGED IN';
 		}
+	}
+
+	onMount(async () => {
+		getStatus();
 	});
+
+	$: $user && getStatus();
 
 	$: completed = status === 'COMPLETED';
 </script>
