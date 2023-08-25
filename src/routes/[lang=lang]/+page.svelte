@@ -25,13 +25,13 @@
 	<div class="title-wrapper">
 		<h1 class="w-medium">The Flownaut</h1>
 		<p class="small">
-			The Flownaut is a Web3/Cadence based wargame inspired by <a
-				href="https://ethernaut.openzeppelin.com/"
-				target="_blank"
-				rel="noreferrer">Ethernaut</a
-			>. Each level is a smart contract that needs to be 'hacked'. The game is 100% open source and
-			all levels are contributions made by other players. Do you have an interesting idea? You can
-			add your own level
+			The Flownaut is a Web3/Cadence based wargame inspired by
+			<a href="https://ethernaut.openzeppelin.com/" target="_blank" rel="noreferrer">Ethernaut</a>
+			and is a branch of
+			<a href="https://academy.ecdao.org" target="_blank" rel="noreferrer">Emerald Academy</a>. Each
+			level is a smart contract that needs to be 'hacked'. The game is 100% open source and all
+			levels are contributions made by other players. Do you have an interesting idea? You can add
+			your own level
 			<a
 				href="https://github.com/emerald-dao/flownaut/tree/main/src/lib/content/flownaut"
 				target="_blank"
