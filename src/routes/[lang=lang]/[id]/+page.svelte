@@ -33,10 +33,10 @@
 
 <section
 	class="introduction center column-8"
-	style={`background-image: linear-gradient(
-    to bottom,
-    rgba(18, 18, 18, 0.90),
-    rgba(18, 18, 18, 0.99)
+	style={`background-image: radial-gradient(
+    rgba(18, 18, 18, 0.96),
+		rgba(18, 18, 18, 0.93),
+    rgba(18, 18, 18, 0.85)
   ), url("/flownaut/flownaut_${data.overview.slug.split('/')[1].charAt(0)}.png")`}
 >
 	<div class="column-2">
@@ -54,52 +54,50 @@
 		walletAddress={data.overview.author.walletAddress}
 	/>
 </section>
-<section class="main-section container-small">
-	<div class="main-wrapper">
-		<article>
-			<svelte:component this={data.readme} />
-		</article>
+<section class="section-large main-section container-small">
+	<article>
+		<svelte:component this={data.readme} />
+	</article>
 
-		<div class="row-4">
-			<Button on:click={() => createNewInstance($page.params.id)}>
-				<Icon icon="tabler:file-import" />
-				Start Challenge
-			</Button>
+	<div class="row-4">
+		<Button on:click={() => createNewInstance($page.params.id)} size="large">
+			<Icon icon="tabler:file-import" />
+			Start Challenge
+		</Button>
 
-			<Button on:click={() => submitChallenge($page.params.id)}>
-				<Icon icon="tabler:file-import" />
-				Submit
-			</Button>
-		</div>
+		<Button on:click={() => submitChallenge($page.params.id)} size="large">
+			<Icon icon="tabler:file-import" />
+			Submit
+		</Button>
+	</div>
 
-		<div class="adjacents-wrapper">
-			{#if previousExample}
-				<a
-					class="step-back each-adjacent-wrapper"
-					href={`/${$page.params.lang}/flownaut/${previousExample.slug.split('/')[1]}`}
-				>
-					<Icon icon="tabler:arrow-left" style="color: var(--clr-text-main);" />
-					<div class="left-wrapper column-2">
-						<p class="heading w-medium">
-							{previousExample.title}
-						</p>
-					</div>
-				</a>
-			{/if}
-			{#if nextExample}
-				<a
-					class="step-next each-adjacent-wrapper"
-					href={`/${$page.params.lang}/flownaut/${nextExample.slug.split('/')[1]}`}
-				>
-					<div class="column-2">
-						<p class="heading w-medium">
-							{nextExample.title}
-						</p>
-					</div>
-					<Icon icon="tabler:arrow-right" style="color: var(--clr-text-main);" />
-				</a>
-			{/if}
-		</div>
+	<div class="bottom-wrapper">
+		{#if previousExample}
+			<a
+				class="step-back each-adjacent-wrapper"
+				href={`/${$page.params.lang}/${previousExample.slug.split('/')[1]}`}
+			>
+				<Icon icon="tabler:arrow-left" style="color: var(--clr-text-main);" />
+				<div class="left-wrapper column-2">
+					<p class="heading w-medium">
+						{previousExample.title}
+					</p>
+				</div>
+			</a>
+		{/if}
+		{#if nextExample}
+			<a
+				class="step-next each-adjacent-wrapper"
+				href={`/${$page.params.lang}/${nextExample.slug.split('/')[1]}`}
+			>
+				<div class="column-2">
+					<p class="heading w-medium">
+						{nextExample.title}
+					</p>
+				</div>
+				<Icon icon="tabler:arrow-right" style="color: var(--clr-text-main);" />
+			</a>
+		{/if}
 	</div>
 </section>
 
@@ -115,57 +113,54 @@
 		text-align: center;
 		background-position: top;
 		padding-block: var(--space-20);
-		border-bottom: 0.5px solid var(--clr-border-primary);
 	}
 
 	.main-section {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-7);
+		gap: var(--space-9);
 
-		.main-wrapper {
-			.adjacents-wrapper {
-				display: flex;
-				flex-direction: column;
-				margin-top: var(--space-11);
+		.bottom-wrapper {
+			display: flex;
+			flex-direction: column;
+			margin-top: var(--space-11);
+
+			@include mq(medium) {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				grid-template-areas: 'start end';
+				gap: var(--space-4);
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			.step-back {
+				grid-area: start;
+			}
+
+			.step-next {
+				grid-area: end;
+				margin-top: var(--space-4);
 
 				@include mq(medium) {
-					display: grid;
-					grid-template-columns: 1fr 1fr;
-					grid-template-areas: 'start end';
-					gap: var(--space-4);
+					margin-top: 0;
 				}
+			}
 
-				a {
-					text-decoration: none;
-				}
+			.each-adjacent-wrapper {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+				gap: var(--space-5);
+				padding: var(--space-4) var(--space-5);
+				border-radius: var(--radius-2);
+				border: var(--border-width-primary) var(--clr-border-primary) solid;
 
-				.step-back {
-					grid-area: start;
-				}
-
-				.step-next {
-					grid-area: end;
-					margin-top: var(--space-4);
-
-					@include mq(medium) {
-						margin-top: 0;
-					}
-				}
-
-				.each-adjacent-wrapper {
-					display: flex;
-					flex-direction: row;
-					align-items: center;
-					justify-content: space-between;
-					gap: var(--space-5);
-					padding: var(--space-4) var(--space-5);
-					border-radius: var(--radius-2);
-					border: var(--border-width-primary) var(--clr-border-primary) solid;
-
-					.left-wrapper {
-						text-align: end;
-					}
+				.left-wrapper {
+					text-align: end;
 				}
 			}
 		}
