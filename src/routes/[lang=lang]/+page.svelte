@@ -74,8 +74,16 @@
 
 		.main {
 			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-columns: 1fr;
 			gap: var(--space-4) var(--space-13);
+
+			@include mq(small) {
+				grid-template-columns: 1fr 1fr;
+			}
+
+			@include mq(medium) {
+				grid-template-columns: 1fr 1fr 1fr;
+			}
 		}
 
 		p {
