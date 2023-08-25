@@ -23,8 +23,21 @@
 
 <section class="container-medium section-large column-6">
 	<div class="title-wrapper">
-		<h1 class="w-medium">Flownaut</h1>
-		<p class="large">Join us in our journey exploring the Flow Blockchain.</p>
+		<h1 class="w-medium">The Flownaut</h1>
+		<p class="small">
+			The Flownaut is a Web3/Cadence based wargame inspired by <a
+				href="https://ethernaut.openzeppelin.com/"
+				target="_blank"
+				rel="noreferrer">Ethernaut</a
+			>. Each level is a smart contract that needs to be 'hacked'. The game is 100% open source and
+			all levels are contributions made by other players. Do you have an interesting idea? You can
+			add your own level
+			<a
+				href="https://github.com/emerald-dao/flownaut/tree/main/src/lib/content/flownaut"
+				target="_blank"
+				rel="noreferrer">here</a
+			>.
+		</p>
 	</div>
 	{#if data.flownauts.length === 0}
 		<p><em>{$LL.NO_EXAMPLES_FOUND()}</em></p>
@@ -63,6 +76,9 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
 			gap: var(--space-4) var(--space-13);
+		}
+
+		p {
 		}
 	}
 </style>
