@@ -9,7 +9,7 @@
 	import LevelStatus from '$lib/components/flownaut/LevelStatus.svelte';
 	import Author from '$lib/components/atoms/Author.svelte';
 	import { onMount } from 'svelte';
-	import { getBalance } from '$flow/actions.ts';
+	import { getBalance } from '$flow/actions';
 
 	export let data;
 
@@ -27,11 +27,13 @@
 			alert(result.error);
 		}
 		startLevelButtonState = 'done';
-		await refreshLevelStatus();
+		await refreshLevelInfo();
 	}
 
-	async function refreshLevelStatus() {
-		data.status = (await getUserLevelInfo($page.params.id)).status;
+	async function refreshLevelInfo() {
+		const { status, contract_address } = await getUserLevelInfo($page.params.id);
+		data.status = status;
+		data.contract_address = contract_address;
 		await logData();
 	}
 
@@ -40,7 +42,7 @@
 		if (!success) {
 			alert(error);
 		} else {
-			await refreshLevelStatus();
+			await refreshLevelInfo();
 			alert('Great job! You solved ' + data.overview.title);
 		}
 	}
@@ -61,7 +63,7 @@
 		}
 	}
 
-	$: $user && refreshLevelStatus();
+	$: $user && refreshLevelInfo();
 
 	onMount(async () => {
 		logData();
