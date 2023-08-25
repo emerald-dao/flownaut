@@ -18,5 +18,5 @@ export interface Step {
 
 export interface ActionExecutionResult {
   state: 'success' | 'error';
-  errorMessage: string;
+  error: string;
 }

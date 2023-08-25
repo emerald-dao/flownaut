@@ -66,7 +66,7 @@ export const executeTransaction: (
 
         return {
           state: 'error',
-          errorMessage: 'Error executing actionAfterSucceed: ' + e
+          error: 'Error executing actionAfterSucceed: ' + e
         } as ActionExecutionResult;
       }
     } else {
@@ -76,7 +76,7 @@ export const executeTransaction: (
 
       return {
         state: 'success',
-        errorMessage: ''
+        error: ''
       } as ActionExecutionResult;
     }
   } catch (e) {
@@ -97,7 +97,7 @@ export const executeTransaction: (
 
     return {
       state: 'error',
-      errorMessage: e
+      error: e
     } as ActionExecutionResult;
   }
 };
