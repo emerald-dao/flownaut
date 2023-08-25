@@ -70,9 +70,9 @@ export async function createNewInstance(challengeId: string) {
             }
         });
         const result = await response.json();
-        return json({ result })
+        return result;
     } catch (e) {
         console.log(e)
-        return json({ error: e });
+        return { error: e };
     }
 }

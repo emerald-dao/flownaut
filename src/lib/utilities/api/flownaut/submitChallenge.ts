@@ -17,5 +17,5 @@ export async function submitChallenge(challengeId: string) {
         }
     });
     const result = await response.json();
-    console.log({ result });
+    return result;
 }

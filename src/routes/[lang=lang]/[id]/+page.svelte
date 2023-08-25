@@ -12,20 +12,35 @@
 
 	export let data;
 
-	$: routes = [
-		{
-			path: `/${$page.params.lang}/flownaut/${data.overview.slug}`,
-			label: transformUrlToHeading(data.overview.title)
-		}
-	];
-
 	$: previousExample = data.content[findExampleIndex - 1];
 	$: nextExample = data.content[findExampleIndex + 1];
 
 	$: findExampleIndex = data.content.findIndex((obj) => obj.slug === `flownaut/${$page.params.id}`);
 
+	let startChallengeButtonState: 'active' | 'done' | 'loading' = 'active';
+
+	async function startChallenge() {
+		startChallengeButtonState = 'loading';
+		const result = await createNewInstance($page.params.id);
+		if (result.error) {
+			alert(result.error);
+		}
+		startChallengeButtonState = 'done';
+		await refreshChallengeStatus();
+	}
+
 	async function refreshChallengeStatus() {
 		data.status = await getUserChallengeStatus($page.params.id);
+	}
+
+	async function submit() {
+		const { error, success } = await submitChallenge($page.params.id);
+		if (!success) {
+			alert(error);
+		} else {
+			await refreshChallengeStatus();
+			alert('Great job! You solved ' + data.overview.title);
+		}
 	}
 
 	$: $user && refreshChallengeStatus();
@@ -60,15 +75,26 @@
 	</article>
 
 	<div class="row-4">
-		<Button on:click={() => createNewInstance($page.params.id)} size="large">
-			<Icon icon="tabler:file-import" />
+		<Button
+			on:click={startChallenge}
+			size="large"
+			type="ghost"
+			color="neutral"
+			state={startChallengeButtonState}
+			statusIconsPosition="left"
+		>
+			{#if startChallengeButtonState !== 'loading'}
+				<Icon icon="tabler:flag" />
+			{/if}
 			Start Challenge
 		</Button>
 
-		<Button on:click={() => submitChallenge($page.params.id)} size="large">
-			<Icon icon="tabler:file-import" />
-			Submit
-		</Button>
+		{#if data.status === 'IN PROGRESS'}
+			<Button on:click={submit} size="large">
+				<Icon icon="tabler:file-import" />
+				Submit
+			</Button>
+		{/if}
 	</div>
 
 	<div class="bottom-wrapper">

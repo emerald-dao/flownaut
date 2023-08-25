@@ -18,7 +18,8 @@ export async function POST({ request }: { request: RequestHandler }) {
     const { error } = await academySupabase.from('flownaut').upsert({
         user_address: user.addr,
         challenge_id,
-        contract_address
+        contract_address,
+        completed: false
     }, { onConflict: 'user_address,challenge_id' });
 
     return json({ error })

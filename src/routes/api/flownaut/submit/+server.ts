@@ -12,7 +12,7 @@ export const POST = async ({ request }) => {
 
     const verifyAccount = await verifyAccountOwnership(user);
     if (!verifyAccount) {
-        return json({ error: 'User object is not valid.' });
+        return json({ success: false, error: 'User object is not valid.' });
     }
 
     const { data } = await academySupabase
@@ -22,11 +22,11 @@ export const POST = async ({ request }) => {
         .eq('challenge_id', challenge_id);
 
     if (!data || data.length === 0) {
-        return json({ error: 'User has not started this challenge.' })
+        return json({ success: false, error: 'User has not started this challenge.' })
     }
 
     if (data[0].completed) {
-        return json({ error: 'User has already completed this challenge.' })
+        return json({ success: false, error: 'User has already completed this challenge.' })
     }
 
     const successScript = await import(`../../../../lib/content/flownaut/${challenge_id}/en/success.cdc?raw`);
@@ -45,9 +45,9 @@ export const POST = async ({ request }) => {
             }, { onConflict: 'user_address,challenge_id' });
             return json({ success: true })
         } else {
-            return json({ error: 'User did not solve the challenge yet.' })
+            return json({ success: false, error: 'User did not solve the challenge yet.' })
         }
     } catch (e) {
-        return json({ error: e });
+        return json({ success: false, error: e });
     }
 }
