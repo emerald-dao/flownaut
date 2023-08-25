@@ -12,7 +12,7 @@ You should see a few messages from the game. While you are playing, you should s
 3. `Player Balance` - the player's flow token balance
 
 ## Get test $FLOW
-To play the game, you will sometimes need test ether. The easiest way to get some testnet ether is via the testnet faucet: https://testnet-faucet.onflow.org/fund-account.
+To play the game, you will sometimes need test ether. The easiest way to get some testnet ether is via the [testnet faucet](https://testnet-faucet.onflow.org/fund-account).
 
 ## Starting a level
 To start a new level, click the "Start Level" button at the bottom of the page. When you do, a new contract (the one shown at the bottom of each level) will be deployed to a random testnet account. Go do it now and come back!
@@ -22,11 +22,11 @@ You should be prompted by your wallet of choice to authorize the transaction. No
 *You can always restart a level by clicking "Start Level" again.*
 
 ## Interact with the contract to complete the level
-To complete a level, you will have to interact with your contract on testnet. You can do your own way, or use tools like https://run.ecdao.org. 
+To complete a level, you will have to interact with your contract on testnet. You can do your own way, or use tools like [Run](https://run.ecdao.org) or [run.dnz.dev](https://run.dnz.dev/). 
 When you know you have completed the level, click the "Submit" button at the bottom of the page. This uses a script to determine if you have completed it.
 
 ## Completing this level
-For this level, you will be deploying a very basic contract. All you have to do is change the greeting to `You have been hacked.`.
+For this level, you will be deploying a very basic contract. All you have to do is change the greeting to `You have been hacked!`.
 
 ```cadence
 pub contract HelloWorld {
