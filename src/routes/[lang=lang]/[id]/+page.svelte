@@ -76,7 +76,7 @@
     rgba(18, 18, 18, 0.96),
 		rgba(18, 18, 18, 0.93),
     rgba(18, 18, 18, 0.85)
-  ), url("/flownaut/flownaut_${data.overview.slug.split('/')[1].charAt(0)}.png")`}
+  ), url("/flownaut/flownaut_${data.overview.id}.png")`}
 >
 	<div class="column-2">
 		<h1 class="w-medium">{data.overview.title}</h1>

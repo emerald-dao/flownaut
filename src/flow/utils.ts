@@ -43,7 +43,6 @@ export const executeTransaction: (
 
     // We connect our TransactionStore to the transaction to get the status
     fcl.tx(transactionId).subscribe(async (res: TransactionStatusObject) => {
-      console.log(res);
       transactionStore.subscribeTransaction(res);
     });
 

@@ -19,9 +19,7 @@ export function createActiveStep(steps: {
 		if (numberOfSteps - 1 >= activeStepNumber) {
 			if (action != null) {
 				steps.changeStepState(activeStepNumber, 'loading');
-				console.log('doing action')
 				const actionResult = await action();
-				console.log(actionResult)
 
 				if (actionResult.state === 'error') {
 					steps.changeStepState(activeStepNumber, 'error');
@@ -30,7 +28,6 @@ export function createActiveStep(steps: {
 				} else if (actionResult.state === 'success') {
 					steps.changeStepState(activeStepNumber, 'success');
 					if (numberOfSteps - 1 !== activeStepNumber) {
-						console.log('changing step state!')
 						steps.changeStepState(activeStepNumber + 1, 'active');
 						update((n) => n + 1);
 					}

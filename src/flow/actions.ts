@@ -22,13 +22,15 @@ export const logIn = async () => await fcl.logIn();
 export const signUp = () => fcl.signUp();
 
 async function createNewInstance(levelId: string) {
-	console.log(`Deploying new ${levelId} contract...`)
 	const contractCode = (await import(`../lib/content/flownaut/${levelId}/en/contract.cdc?raw`)).default;
 	const hexCode = Buffer.from(contractCode).toString('hex');
 	const contractName = getContractNameFromContractCode(contractCode);
 
-	return await fcl.mutate({
-		cadence: `
+	let deployCode;
+	try {
+		deployCode = (await import(`../lib/content/flownaut/${levelId}/en/deploy.cdc?raw`)).default;
+	} catch (e) {
+		deployCode = `
 		transaction(publicKey: String, contractCode: String, contractName: String) {
 			prepare(signer: AuthAccount) {
 				let key = PublicKey(
@@ -50,7 +52,11 @@ async function createNewInstance(levelId: string) {
 				)
 			}
 		}
-		`,
+		`
+	}
+
+	return await fcl.mutate({
+		cadence: deployCode,
 		args: (arg, t) => [
 			arg(PublicEnv.PUBLIC_TESTNET_ACCOUNT_PUBLIC_KEY, t.String),
 			arg(hexCode, t.String),

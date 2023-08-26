@@ -8,5 +8,6 @@ export const overview: Flownaut = {
 		avatarUrl: 'https://avatars.githubusercontent.com/u/15198786?v=4',
 		isVerified: true
 	},
-	description: 'This level walks you through the very basics of how to play the game.'
+	description: 'This level walks you through the very basics of how to play the game.',
+	difficulty: 0
 };

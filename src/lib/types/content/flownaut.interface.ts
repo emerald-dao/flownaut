@@ -5,6 +5,7 @@ export interface Flownaut {
 	title: string;
 	author: Author;
 	description?: string;
+	difficulty: 0 | 1 | 2 | 3 | 4 | 5
 }
 
 export interface FlownautWithStatusAndSlug extends Flownaut {
@@ -14,4 +15,5 @@ export interface FlownautWithStatusAndSlug extends Flownaut {
 
 export interface FlownautWithSlug extends Flownaut {
 	slug: string;
+	id: number;
 }
