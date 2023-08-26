@@ -6,7 +6,7 @@
 	import { page } from '$app/stores';
 	import Icon from '@iconify/svelte';
 	import EditContent from '../atoms/EditContent.svelte';
-	import type { Author as IAuthor } from '$lib/types/content/content-overview.interface';
+	import type { Author as IAuthor } from '$lib/types/content/flownaut.interface';
 	import Author from '../atoms/Author.svelte';
 
 	export let headings: Heading[];

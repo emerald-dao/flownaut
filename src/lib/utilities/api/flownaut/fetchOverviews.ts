@@ -31,8 +31,17 @@ export const fetchOverviews = async (locale?: Locales) => {
 		})
 	);
 
+	let difficultyMap = {
+		'Intro': 0,
+		'Easy': 1,
+		'Novice': 2,
+		'Intermediate': 3,
+		'Advanced': 4,
+		'Expert': 5
+	};
+
 	// return in order of difficulty
-	const sortedOverviews = allOverviews.sort((a, b) => a?.difficulty - b?.difficulty);
+	const sortedOverviews = allOverviews.sort((a, b) => difficultyMap[a?.difficulty] - difficultyMap[b?.difficulty]);
 
 	return sortedOverviews;
 };

@@ -1,4 +1,4 @@
-import type { Flownaut } from '$lib/types/content/flownaut.interface';
+import { DifficultyEnum, type Flownaut } from '$lib/types/content/flownaut.interface';
 
 export const overview: Flownaut = {
 	title: 'Password',
@@ -9,5 +9,5 @@ export const overview: Flownaut = {
 		isVerified: true
 	},
 	description: 'Input the correct password.',
-	difficulty: 1
+	difficulty: DifficultyEnum.Easy
 };

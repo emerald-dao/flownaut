@@ -10,6 +10,7 @@
 	import Author from '$lib/components/atoms/Author.svelte';
 	import { onMount } from 'svelte';
 	import { getBalance } from '$flow/actions';
+	import DifficultyLabel from '$lib/components/flownaut/DifficultyLabel.svelte';
 
 	export let data;
 
@@ -84,7 +85,10 @@
 			<p>{data.overview.description}</p>
 		{/if}
 	</div>
-	<LevelStatus status={data.status} />
+	<div class="row-2">
+		<LevelStatus status={data.status} />
+		<DifficultyLabel difficulty={data.overview.difficulty} />
+	</div>
 	<Author
 		name={data.overview.author.name}
 		avatarUrl={data.overview.author.avatarUrl}

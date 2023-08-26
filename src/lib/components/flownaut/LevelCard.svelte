@@ -7,6 +7,7 @@
 	import Author from '../atoms/Author.svelte';
 	import LevelStatus from './LevelStatus.svelte';
 	import { getUserLevelInfo } from '$lib/utilities/api/flownaut/getUserLevelInfo';
+	import DifficultyLabel from './DifficultyLabel.svelte';
 
 	export let level: FlownautWithSlug;
 	export let i: number;
@@ -64,7 +65,10 @@
 				<p class="small description">{level.description}</p>
 			{/if}
 		</div>
-		<LevelStatus {status} />
+		<div class="row-2">
+			<LevelStatus {status} />
+			<DifficultyLabel difficulty={level.difficulty} />
+		</div>
 		<Author
 			name={level.author.name}
 			avatarUrl={level.author.avatarUrl}

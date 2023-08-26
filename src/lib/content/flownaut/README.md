@@ -6,7 +6,7 @@ Here are the steps to add a level:
 
 1. Create a folder with the name being the title of your level.
 2. In the folder you create, you should have the following files:
-- `overview.ts` - follow the format like the others. The `difficulty` field is a 1-5 rating where 1 is easy and 5 is very hard.
+- `overview.ts` - follow the format like the others.
 - `readme.md` - what will display on the level page. You must include the contract code at the bottom like the others do.
 - `success.cdc` - this script will be run to check if the user passes the level. **It must return a `Bool` type - `true` if the user passes, `false` if not.**
 - `contract.cdc` - the contract to be deployed when the user clicks "Start Level". **It must match the contract code displayed at the bottom of `readme.md`.**

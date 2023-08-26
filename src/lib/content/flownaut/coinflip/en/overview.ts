@@ -1,4 +1,4 @@
-import type { Flownaut } from '$lib/types/content/flownaut.interface';
+import { DifficultyEnum, type Flownaut } from '$lib/types/content/flownaut.interface';
 
 export const overview: Flownaut = {
 	title: 'Coinflip',
@@ -9,5 +9,5 @@ export const overview: Flownaut = {
 		isVerified: true
 	},
 	description: 'Use your psychic abilities to guess 10 coinflips in a row.',
-	difficulty: 1
+	difficulty: DifficultyEnum.Easy
 };

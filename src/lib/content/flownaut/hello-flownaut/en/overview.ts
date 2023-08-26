@@ -1,4 +1,4 @@
-import type { Flownaut } from '$lib/types/content/flownaut.interface';
+import { DifficultyEnum, type Flownaut } from '$lib/types/content/flownaut.interface';
 
 export const overview: Flownaut = {
 	title: 'Hello Flownaut',
@@ -9,5 +9,5 @@ export const overview: Flownaut = {
 		isVerified: true
 	},
 	description: 'This level walks you through the very basics of how to play the game.',
-	difficulty: 0
+	difficulty: DifficultyEnum.Intro
 };
