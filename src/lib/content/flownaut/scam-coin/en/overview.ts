@@ -8,6 +8,6 @@ export const overview: Flownaut = {
 		avatarUrl: 'https://avatars.githubusercontent.com/u/15198786?v=4',
 		isVerified: true
 	},
-	description: 'Lie about the amount of $FLOW tokens you have.',
-	difficulty: DifficultyEnum.Easy
+	description: "Break through a secret webpage's $FLOW requirement.",
+	difficulty: DifficultyEnum.Novice
 };
