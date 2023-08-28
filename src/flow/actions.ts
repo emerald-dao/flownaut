@@ -23,7 +23,8 @@ export const signUp = () => fcl.signUp();
 
 async function createNewInstance(levelId: string) {
 	const contractCode = (await import(`../lib/content/flownaut/${levelId}/en/contract.cdc?raw`)).default;
-	const hexCode = Buffer.from(contractCode).toString('hex');
+	const replaceImports = replaceWithProperValues(contractCode);
+	const hexCode = Buffer.from(replaceImports).toString('hex');
 	const contractName = getContractNameFromContractCode(contractCode);
 
 	let deployCode;
