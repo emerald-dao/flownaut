@@ -123,7 +123,7 @@ export const getFindProfile = async (address: string) => {
   try {
     return await fcl.query({
       cadence: `
-        import FIND from ${addresses.FIND}
+        import FIND from 0x35717efbbce11c74
         pub fun main(address: Address): Profile? {
             if let name = FIND.reverseLookup(address) {
               let profile = FIND.lookup(name)!

@@ -83,6 +83,7 @@ export const getBalance = async (address: string) => {
 			args: (arg, t) => [arg(address, t.Address)]
 		});
 	} catch (e) {
+		console.error(e)
 		return null;
 	}
 };
