@@ -14,7 +14,11 @@ export function replaceWithProperValues(script: string) {
       .replace('"../utility/FUSD.cdc"', addresses.FUSD)
       .replace('"../utility/FiatToken.cdc"', addresses.FiatToken)
       .replace('"../utility/FungibleToken.cdc"', addresses.FungibleToken)
-      .replace('"../SendTokenMessage.cdc"', addresses.SendTokenMessage)
+      // For Flownaut
+      .replace('"./utility/FlowToken.cdc"', addresses.FlowToken)
+      .replace('"./utility/FUSD.cdc"', addresses.FUSD)
+      .replace('"./utility/FiatToken.cdc"', addresses.FiatToken)
+      .replace('"./utility/FungibleToken.cdc"', addresses.FungibleToken)
   );
 }
 
@@ -92,7 +96,7 @@ export const executeTransaction: (
       transactionStore.resetTransaction();
     }, 6000);
 
-    console.log('Error in executeTransaction: ', e);
+    console.error('Error in executeTransaction: ', e);
 
     return {
       state: 'error',

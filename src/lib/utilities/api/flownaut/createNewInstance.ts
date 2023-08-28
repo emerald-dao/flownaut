@@ -1,7 +1,4 @@
-import { getContractNameFromContractCode, verifyAccountOwnership } from "$flow/utils";
 import { user } from "$stores/flow/FlowStore";
-import { authz, mutate, tx } from "@onflow/fcl";
-import { json } from "@sveltejs/kit";
 import { get } from "svelte/store";
 import type { TransactionStatusObject } from '@onflow/fcl';
 import { createNewInstanceExecution } from "$flow/actions";
@@ -32,9 +29,28 @@ export async function createNewInstance(levelId: string) {
             return result;
         }
 
-        return await createNewInstanceExecution(levelId, saveLevelStatus);
+        try {
+            // tests to see if we need to deploy a contract
+            const contractCode = (await import(`../../../../lib/content/flownaut/${levelId}/en/contract.cdc?raw`)).default;
+            return await createNewInstanceExecution(levelId, saveLevelStatus);
+        } catch (e) {
+            // there is no contract to deploy
+            const response = await fetch('/api/flownaut/new-instance', {
+                method: 'POST',
+                body: JSON.stringify({
+                    user: get(user),
+                    level_id: levelId,
+                    contract_address: null
+                }),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            });
+            const result = await response.json();
+            return result;
+        }
     } catch (e) {
-        console.log(e)
+        console.error(e)
         return { error: e };
     }
 }

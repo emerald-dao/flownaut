@@ -70,9 +70,5 @@ export const addresses = {
 	FungibleToken: contractData.FungibleToken[network],
 	FlowToken: contractData.FlowToken[network],
 	FUSD: contractData.FUSD[network],
-	ECTreasury: contractData.ECTreasury[network],
-	FLOAT: contractData.FLOAT[network],
-	FIND: contractData.FIND[network],
 	FiatToken: contractData.FiatToken[network],
-	SendTokenMessage: contractData.SendTokenMessage[network]
 };

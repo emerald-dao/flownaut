@@ -41,7 +41,7 @@
 	async function submit() {
 		const { error, success } = await submitLevel($page.params.id);
 		if (!success) {
-			alert(error);
+			console.error(error);
 		} else {
 			await refreshLevelInfo();
 			alert('Great job! You solved ' + data.overview.title);
@@ -56,7 +56,9 @@
 			console.log('Log in to view data about this level.');
 		} else {
 			console.log('Player Address:', $user.addr);
-			console.log('Contract Address:', data.contract_address);
+			if (data.contract_address) {
+				console.log('Contract Address:', data.contract_address);
+			}
 			if ($user.loggedIn) {
 				const balance = await getBalance($user.addr);
 				console.log('Player Balance:', balance);

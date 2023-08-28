@@ -2,8 +2,8 @@ import { json } from '@sveltejs/kit';
 import { createClient } from '@supabase/supabase-js';
 import { env as PrivateEnv } from '$env/dynamic/private';
 import { env as PublicEnv } from '$env/dynamic/public';
-import { config, query } from '@onflow/fcl';
-import { switchNetwork, verifyAccountOwnership } from '$flow/utils.js';
+import { query } from '@onflow/fcl';
+import { replaceWithProperValues, verifyAccountOwnership } from '$flow/utils.js';
 
 const academySupabase = createClient(PublicEnv.PUBLIC_ACADEMY_SUPABASE_URL, PrivateEnv.SUPABASE_ACADEMY_SERVICE_KEY);
 
@@ -34,8 +34,10 @@ export const POST = async ({ request }) => {
 
     try {
         const scriptResult = await query({
-            cadence,
-            args: (arg, t) => []
+            cadence: replaceWithProperValues(cadence),
+            args: (arg, t) => [
+                arg(user.addr, t.Address)
+            ]
         });
         if (scriptResult) {
             const { error } = await academySupabase.from('flownaut').upsert({
@@ -48,6 +50,6 @@ export const POST = async ({ request }) => {
             return json({ success: false, error: 'User did not solve the level yet.' })
         }
     } catch (e) {
-        return json({ success: false, error: e });
+        return json({ success: false, error: e.errorMessage });
     }
 }
