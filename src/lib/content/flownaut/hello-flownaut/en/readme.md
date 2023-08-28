@@ -32,7 +32,7 @@ When you know you have completed the level, click the "Submit" button at the bot
 For this level, you will be deploying a very basic contract. All you have to do is change the greeting to `You have been hacked!`.
 
 ```cadence
-pub contract HelloWorld {
+pub contract HelloFlownaut {
    pub var greeting: String
 
    pub fun changeGreeting(newGreeting: String) {
