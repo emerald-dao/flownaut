@@ -19,16 +19,18 @@
 
 	$: findExampleIndex = data.content.findIndex((obj) => obj.slug === `flownaut/${$page.params.id}`);
 
-	let startLevelButtonState: 'active' | 'done' | 'loading' = 'active';
+	let startLevelButtonState: 'active' | 'done' | 'loading' | 'disabled' = 'active';
 
 	async function startLevel() {
 		startLevelButtonState = 'loading';
 		const result = await createNewInstance($page.params.id);
 		if (result.error) {
-			alert(result.error);
+			console.error(result.error);
+			startLevelButtonState = 'disabled';
+		} else {
+			startLevelButtonState = 'done';
+			await refreshLevelInfo();
 		}
-		startLevelButtonState = 'done';
-		await refreshLevelInfo();
 	}
 
 	async function refreshLevelInfo() {
