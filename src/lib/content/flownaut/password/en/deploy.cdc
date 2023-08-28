@@ -1,4 +1,4 @@
-transaction(publicKey: String, contractCode: String, contractName: String, password: String) {
+transaction(publicKey: String, contractCode: String, contractName: String) {
     prepare(signer: AuthAccount) {
         let key = PublicKey(
             publicKey: publicKey.decodeHex(),
