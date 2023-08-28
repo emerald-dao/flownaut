@@ -14,7 +14,7 @@
 			<Icon width="0.8rem" icon="tabler:check" />
 			<span class="xsmall">Completed</span>
 		{:else if status === 'NOT LOGGED IN'}
-			<span class="xsmall">Please log in to view your status</span>
+			<span class="xsmall">Please log in</span>
 		{:else if status === 'NOT STARTED'}
 			<span class="xsmall">Not Started</span>
 		{/if}
