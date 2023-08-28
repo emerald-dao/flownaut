@@ -11,4 +11,12 @@ Here are the steps to add a level:
 - `readme.md` - what will display on the level page.
 - `success.cdc` - this script will be run to check if the user passes the level. **It must return a `Bool` type - `true` if the user passes, `false` if not.**
 - (*OPTIONAL*) `contract.cdc` - the contract to be deployed when the user clicks "Start Level". If no contract is needed, don't include this file.
+  - Note: If your contract imports any of the following common contracts below, simply add a `utility` folder with those contracts in it. See the `scam-coin` folder for an example.
+    - FlowToken
+    - FungibleToken
+    - NonFungibleToken
+    - FiatToken
+    - FUSD
+    - MetadataViews
+    - FungibleTokenMetadataViews
 - (*OPTIONAL*) `deploy.cdc` - a custom deploy script to be used when the user clicks "Start Level". Can be used to set up user storage like initializing Vaults or NFT Collections and stuff like that.

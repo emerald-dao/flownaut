@@ -37,22 +37,6 @@ const contractData = {
 		emulator: '0xf8d6e0586b0a20c7',
 		testnet: '0xe223d8a629e49c68',
 		mainnet: '0x3c5959b568896393'
-	},
-	ECTreasury: {
-		testnet: '0x6c0d53c676256e8c',
-		mainnet: '0x5643fd47a29770e7'
-	},
-	FLOAT: {
-		testnet: '0x0afe396ebc8eee65',
-		mainnet: '0x2d4c3caffbeab845'
-	},
-	FIND: {
-		testnet: '0xa16ab1d0abde3625',
-		mainnet: '0x097bafa4e0b48eef'
-	},
-	SendTokenMessage: {
-		emulator: '0xf8d6e0586b0a20c7',
-		mainnet: '0x3d64e203dbb5eafb'
 	}
 };
 

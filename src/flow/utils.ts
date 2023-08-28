@@ -14,11 +14,17 @@ export function replaceWithProperValues(script: string) {
       .replace('"../utility/FUSD.cdc"', addresses.FUSD)
       .replace('"../utility/FiatToken.cdc"', addresses.FiatToken)
       .replace('"../utility/FungibleToken.cdc"', addresses.FungibleToken)
+      .replace('"../utility/FlowToken.cdc"', addresses.FungibleTokenMetadataViews)
+      .replace('"../utility/FlowToken.cdc"', addresses.NonFungibleToken)
+      .replace('"../utility/FlowToken.cdc"', addresses.MetadataViews)
       // For Flownaut
       .replace('"./utility/FlowToken.cdc"', addresses.FlowToken)
       .replace('"./utility/FUSD.cdc"', addresses.FUSD)
       .replace('"./utility/FiatToken.cdc"', addresses.FiatToken)
       .replace('"./utility/FungibleToken.cdc"', addresses.FungibleToken)
+      .replace('"./utility/FlowToken.cdc"', addresses.FungibleTokenMetadataViews)
+      .replace('"./utility/FlowToken.cdc"', addresses.NonFungibleToken)
+      .replace('"./utility/FlowToken.cdc"', addresses.MetadataViews)
   );
 }
 
