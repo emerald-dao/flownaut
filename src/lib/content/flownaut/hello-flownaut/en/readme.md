@@ -11,6 +11,8 @@ You should see a few messages from the game. While you are playing, you should s
 2. `Contract Address` - the address of the contract you deploy, and are interacting with
 3. `Player Balance` - the player's flow token balance
 
+Any errors or messages from the game will also appear here.
+
 ## Get test $FLOW
 To play the game, you will sometimes need test ether. The easiest way to get some testnet ether is via the [testnet faucet](https://testnet-faucet.onflow.org/fund-account).
 

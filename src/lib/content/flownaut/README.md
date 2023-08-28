@@ -9,7 +9,17 @@ Here are the steps to add a level:
 3. In the language folder, you should have the following files:
 - `overview.ts` - follow the format like the others.
 - `readme.md` - what will display on the level page.
-- `success.cdc` - this script will be run to check if the user passes the level. **It must return a `Bool` type - `true` if the user passes, `false` if not.**
+- `success.cdc` - this script will be run to check if the user passes the level. **It must return a `Bool` type - `true` if the user passes, `false` if not. It also must take `user: Address` as its only argument.** 
+
+    Here is a template:
+    ```cadence
+    pub fun main(user: Address): Bool {
+        // your code here
+        
+        return true
+    }
+    ```
+
 - (*OPTIONAL*) `contract.cdc` - the contract to be deployed when the user clicks "Start Level". If no contract is needed, don't include this file.
 - (*OPTIONAL*) `deploy.cdc` - a custom deploy script to be used when the user clicks "Start Level". Can be used to set up user storage like initializing Vaults or NFT Collections and stuff like that.
 
