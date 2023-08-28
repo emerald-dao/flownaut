@@ -1,31 +1,20 @@
-This is a coin flipping game where you need to build up your winning streak by guessing the outcome of a coin flip. To complete this level you'll need to use your psychic abilities to guess the correct outcome 10 times in a row.
-
-Things that may help:
-- Post conditions
+You must guess the password of this contract to unlock superpowers.
 
 ```cadence
-pub contract Coinflip {
+pub contract Password {
 
-    pub var consecutiveWins: UInt64
+    pub let password: String
+    pub var locked: Bool
 
-    pub fun flip(guess: Bool) {
-        let currentBlockId: [UInt8; 32] = getCurrentBlock().id
-        var seed: UInt256 = 0
-        for byte in currentBlockId {
-            seed = seed + UInt256(byte)
-        }
-        let flip: UInt256 = seed % 2
-        let side: Bool = flip == 1 ? true : false
-        
-        if side == guess {
-            self.consecutiveWins = self.consecutiveWins + 1
-        } else {
-            self.consecutiveWins = 0
+    pub fun unlock(guess: String) {
+        if guess == self.password {
+            self.locked = false
         }
     }
 
-    init() {
-        self.consecutiveWins = 0
+    init(password: String) {
+        self.password = password
+        self.locked = true
     }
 }
 ```
