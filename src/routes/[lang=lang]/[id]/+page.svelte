@@ -19,7 +19,7 @@
 
 	$: findExampleIndex = data.content.findIndex((obj) => obj.slug === `flownaut/${$page.params.id}`);
 
-	let startLevelButtonState: 'active' | 'done' | 'loading' | 'disabled' = 'active';
+	$: startLevelButtonState = $user.loggedIn ? 'active' : 'disabled';
 
 	async function startLevel() {
 		startLevelButtonState = 'loading';
@@ -115,10 +115,17 @@
 			state={startLevelButtonState}
 			statusIconsPosition="left"
 		>
-			{#if startLevelButtonState !== 'loading'}
+			{#if data.status === 'NOT STARTED'}
 				<Icon icon="tabler:flag" />
+				Start Level
 			{/if}
-			Start Level
+			{#if data.status === 'IN PROGRESS' || data.status === 'COMPLETED'}
+				<Icon icon="tabler:refresh" />
+				Restart Level
+			{/if}
+			{#if data.status === 'NOT LOGGED IN'}
+				Please log in
+			{/if}
 		</Button>
 
 		{#if data.status === 'IN PROGRESS'}
