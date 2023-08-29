@@ -166,7 +166,7 @@ export const verifyAccountOwnership = async (userObject) => {
 
 export const getContractNameFromContractCode = (contractCode: string) => {
   const withoutBeginning = contractCode.slice(contractCode.indexOf('pub contract ') + 13)
-  const withoutEnd = withoutBeginning.substring(0, withoutBeginning.indexOf('{'));
+  const withoutEnd = withoutBeginning.substring(0, Math.min(withoutBeginning.indexOf(':'), withoutBeginning.indexOf('{')));
   return removeWhitespace(withoutEnd);
 }
 

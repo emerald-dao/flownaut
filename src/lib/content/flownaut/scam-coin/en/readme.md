@@ -4,6 +4,8 @@ Find a way to meet the requirement **without having to hold FlowToken.**
 
 Here is the script that the website uses to give you access:
 ```cadence
+import FungibleToken from "./FungibleToken.cdc"
+
 pub fun main(user: Address): Bool {
     let publicAccount: PublicAccount = getAccount(user)
 
