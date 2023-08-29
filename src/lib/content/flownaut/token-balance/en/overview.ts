@@ -8,6 +8,6 @@ export const overview: Flownaut = {
 		avatarUrl: 'https://avatars.githubusercontent.com/u/15198786?v=4',
 		isVerified: true
 	},
-	description: "Break your token balance.",
+	description: "Falsify your token balance.",
 	difficulty: DifficultyEnum.Novice
 };
