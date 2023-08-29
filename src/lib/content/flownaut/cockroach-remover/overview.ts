@@ -8,6 +8,6 @@ export const overview: Flownaut = {
 		avatarUrl: 'https://avatars.githubusercontent.com/u/14267423',
 		isVerified: false
 	},
-	description: `Let's send your lover cockroaches.`,
+	description: `Send your lover cockroaches.`,
 	difficulty: DifficultyEnum.Intro
 };
