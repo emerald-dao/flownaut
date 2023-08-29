@@ -9,5 +9,5 @@ export const overview: Flownaut = {
 		isVerified: false
 	},
 	description: `Send your lover cockroaches.`,
-	difficulty: DifficultyEnum.Intro
+	difficulty: DifficultyEnum.Easy
 };
