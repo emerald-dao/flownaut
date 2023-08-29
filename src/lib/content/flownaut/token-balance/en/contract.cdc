@@ -29,7 +29,7 @@ pub contract ExampleToken: FungibleToken {
         }
 
         pub fun deposit(from: @FungibleToken.Vault) {
-            let vault <- from as! @ExampleToken.Vault
+            let vault <- from as! @Vault
             self.balance = self.balance + vault.balance
             if let owner: Address = self.owner?.address {
                 emit TokensDeposited(amount: vault.balance, to: owner)
@@ -54,7 +54,7 @@ pub contract ExampleToken: FungibleToken {
         return <- create Vault(balance: 0.0)
     }
 
-    pub fun mintTokens(amount: UFix64): @ExampleToken.Vault {
+    pub fun mintTokens(amount: UFix64): @Vault {
         pre {
             amount > 0.0: "Amount minted must be greater than zero"
         }
