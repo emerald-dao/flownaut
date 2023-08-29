@@ -1,7 +1,6 @@
-Your lover adores bugs but hates cockroaches.
+Your lover adores bugs but hates cockroaches. You decide to send your lover bugs but want to surprise them with a few cockroaches in the mix.
 
-You want to see the surprised look on your lover's face, so you decide to send them cockroaches mixed in with the bugs.
-However, your lover is suspicious and is has prepared a function to remove the cockroaches from the insects.
+However, they are suspicious of you and have prepared a function to remove the cockroaches from the insects.
 
 Find a way to get a cockroach into the `insects` array.
 
