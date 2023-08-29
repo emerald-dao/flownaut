@@ -1,6 +1,6 @@
 One of your favorite token projects tries to keep track of all its users' token balances in their smart contract.
 
-Unfortunately, they hired [eldumbo](https://twitter.com/ElDumboTS) as their smart contract engineer who left a way to falsify your balance.
+Unfortunately, they hired [bluesign](https://twitter.com/bluesign) as their smart contract engineer who left a way to falsify your balance.
 
 Find a way to make the `balances` dictionary return more than what is in your actual vault.
 
