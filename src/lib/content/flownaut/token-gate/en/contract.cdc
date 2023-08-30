@@ -3,7 +3,6 @@ import FungibleToken from "./utility/FungibleToken.cdc"
 pub contract ExampleToken: FungibleToken {
 
     pub var totalSupply: UFix64
-    access(self) let balances: {Address: UFix64}
 
     pub let VaultStoragePath: StoragePath
     pub let VaultPublicPath: PublicPath
@@ -21,20 +20,14 @@ pub contract ExampleToken: FungibleToken {
 
         pub fun withdraw(amount: UFix64): @FungibleToken.Vault {
             self.balance = self.balance - amount
-            if let owner: Address = self.owner?.address {
-                emit TokensWithdrawn(amount: amount, from: owner)
-                ExampleToken.balances[owner] = self.balance
-            }
+            emit TokensWithdrawn(amount: amount, from: self.owner?.address)
             return <- create Vault(balance: amount)
         }
 
         pub fun deposit(from: @FungibleToken.Vault) {
             let vault <- from as! @Vault
             self.balance = self.balance + vault.balance
-            if let owner: Address = self.owner?.address {
-                emit TokensDeposited(amount: vault.balance, to: owner)
-                ExampleToken.balances[owner] = self.balance
-            }
+            emit TokensDeposited(amount: vault.balance, to: self.owner?.address)
             vault.balance = 0.0
             destroy vault
         }
@@ -44,9 +37,7 @@ pub contract ExampleToken: FungibleToken {
         }
 
         destroy() {
-            pre {
-                self.balance == 0.0: "Cannot destroy a Vault unless balance is 0."
-            }
+            emit TokensBurned(amount: self.balance)
         }
     }
 
@@ -54,26 +45,18 @@ pub contract ExampleToken: FungibleToken {
         return <- create Vault(balance: 0.0)
     }
 
-    pub fun mintTokens(amount: UFix64): @Vault {
-        pre {
-            amount > 0.0: "Amount minted must be greater than zero"
-        }
+    pub fun minter(amount: UFix64): @Vault {
         ExampleToken.totalSupply = ExampleToken.totalSupply + amount
         emit TokensMinted(amount: amount)
         return <- create Vault(balance: amount)
     }
 
-    pub fun getBalances(): {Address: UFix64} {
-        return self.balances
-    }
-
     init() {
         self.totalSupply = 0.0
-        self.balances = {}
 
-        self.VaultStoragePath = /storage/FlownautTokenBalanceExampleTokenVault
-        self.VaultPublicPath = /public/FlownautTokenBalanceExampleTokenMetadata
-        self.ReceiverPublicPath = /public/FlownautTokenBalanceExampleTokenReceiver
+        self.VaultStoragePath = /storage/FlownautTokenGateExampleTokenVault
+        self.VaultPublicPath = /public/FlownautTokenGateExampleTokenMetadata
+        self.ReceiverPublicPath = /public/FlownautTokenGateExampleTokenReceiver
 
         emit TokensInitialized(initialSupply: self.totalSupply)
     }
