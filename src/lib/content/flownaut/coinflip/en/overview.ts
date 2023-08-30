@@ -9,5 +9,5 @@ export const overview: Flownaut = {
 		isVerified: true
 	},
 	description: 'Use your psychic abilities to guess 10 coinflips in a row.',
-	difficulty: DifficultyEnum.Easy
+	difficulty: DifficultyEnum.Novice
 };

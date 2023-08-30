@@ -9,5 +9,5 @@ export const overview: Flownaut = {
 		isVerified: true
 	},
 	description: "Breach through a secret webpage's token-gated requirement.",
-	difficulty: DifficultyEnum.Novice
+	difficulty: DifficultyEnum.Intermediate
 };
