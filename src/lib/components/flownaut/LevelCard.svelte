@@ -65,7 +65,7 @@
 				<p class="small description">{level.description}</p>
 			{/if}
 		</div>
-		<div class="row-2">
+		<div class="row-2 data">
 			<LevelStatus {status} />
 			<DifficultyLabel difficulty={level.difficulty} />
 		</div>
@@ -80,6 +80,10 @@
 </a>
 
 <style lang="scss">
+	.data {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 	.card {
 		background-color: transparent;
 		display: flex;
