@@ -54,9 +54,9 @@ pub contract ExampleToken: FungibleToken {
     init() {
         self.totalSupply = 0.0
 
-        self.VaultStoragePath = /storage/FlownautTokenGateExampleTokenVault
-        self.VaultPublicPath = /public/FlownautTokenGateExampleTokenMetadata
-        self.ReceiverPublicPath = /public/FlownautTokenGateExampleTokenReceiver
+        self.VaultStoragePath = /storage/FlownautCapabilityPaloozaExampleTokenVault
+        self.VaultPublicPath = /public/FlownautCapabilityPaloozaExampleTokenMetadata
+        self.ReceiverPublicPath = /public/FlownautCapabilityPaloozaExampleTokenReceiver
 
         emit TokensInitialized(initialSupply: self.totalSupply)
     }
