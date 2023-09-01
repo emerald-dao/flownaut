@@ -40,15 +40,14 @@ Para este nível, você implantará um contrato muito básico. Tudo o que você 
 
 ```cadence
 pub contract HelloFlownaut {
-   pub var saudação: String
+   pub var greeting: String
 
-   pub fun alterarSaudacao(novaSaudacao: String) {
-      self.saudação = novaSaudacao
+   pub fun changeGreeting(newGreeting: String) {
+      self.greeting = newGreeting
    }
 
    init() {
-      self.saudação = "Olá, Brasil!"
+      self.greeting = "Olá, Brasil!"
    }
 }
-
 ```
