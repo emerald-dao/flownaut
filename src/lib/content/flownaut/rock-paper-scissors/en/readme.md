@@ -1,16 +1,6 @@
-Now you are very angry.
+You go to play a rock paper scissors game, but you can never seem to win. There seems to be some cheating going on by the robot you're playing against.
 
-You played rock-paper-scissors with a game machine made by your lover, and the loser will pay for afternoon tea.
-
-You are determined to win the game, but no matter how many times you try, you always lose.
-
-It seems that your lover's game machine is cheating and you are sure to lose.
-
-You realize how the cheat works and decide to challenge him to one last game.
-
-You play rock-paper-scissors three times, and the winner is the one who wins more than twice.
-
-Find out how to increase `yourScore` to 2 or more!
+Find a way to win 2 or more games and increase `yourScore` to 2 or more!
 
 ```cadence
 pub contract RockPaperScissors {
