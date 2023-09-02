@@ -47,7 +47,7 @@ pub contract HelloFlownaut {
    }
 
    init() {
-      self.greeting = "Olá, Brasil!"
+      self.greeting = "Ola, Brasil!"
    }
 }
 ```
