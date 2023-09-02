@@ -1,4 +1,4 @@
-Your lover adores bugs but hates cockroaches. You decide to send your lover bugs but want to surprise them with a few cockroaches in the mix.
+Your friend adores bugs but hates cockroaches. You decide to send your friend bugs but want to surprise them with a few cockroaches in the mix.
 
 However, they are suspicious of you and have prepared a function to remove the cockroaches from the insects.
 
