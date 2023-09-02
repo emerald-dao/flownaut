@@ -10,11 +10,11 @@ pub contract SurpriseRemover {
 
    pub fun removeEmptyGift(gifts: [String]) {
       pre {
-         gifts.contains("presente vazio"): "Não há presente vazio para remover"
+         gifts.contains("presente vazio"): "Nao ha presente vazio para remover"
       }
 
       self.gifts = []
-      let index = gifts.firstIndex(of: "presente vazio") ?? panic("Não há presente vazio para remover")
+      let index = gifts.firstIndex(of: "presente vazio") ?? panic("Nao ha presente vazio para remover")
       for i, gift in gifts {
          if i != index {
             self.gifts.append(gift)
