@@ -49,23 +49,11 @@
 			}
 		},
 		"testnet-account": {
-			"address": "bb6d0ee35fdfdeae",
+			"address": "18b2287044f84d9a",
 			"key": {
 				"type": "file",
 				"location": "testnet-account.pkey"
 			}
-		}
-	},
-	"deployments": {
-		"emulator": {
-			"emulator-account": [
-				"SendTokenMessage"
-			]
-		},
-		"mainnet": {
-			"mainnet-account": [
-				"SendTokenMessage"
-			]
 		}
 	}
 }

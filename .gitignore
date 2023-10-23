@@ -10,3 +10,4 @@ package-lock.json
 mainnet-account.pkey
 testnet-account.pkey
 yarn.lock
+testnet-account.pkey
