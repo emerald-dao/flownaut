@@ -3,6 +3,7 @@ import { get } from "svelte/store";
 import type { TransactionStatusObject } from '@onflow/fcl';
 import { createNewInstanceExecution } from "$flow/actions";
 import type { ActionExecutionResult } from "$stores/custom/steps/step.interface";
+// import flowJSON from '../../../../../flow.json';
 
 export async function createNewInstance(levelId: string) {
     try {
@@ -30,10 +31,26 @@ export async function createNewInstance(levelId: string) {
         }
 
         try {
-            // tests to see if we need to deploy a contract
-            const contractCode = (await import(`../../../../lib/content/flownaut/${levelId}/en/contract.cdc?raw`)).default;
-            return await createNewInstanceExecution(levelId, saveLevelStatus);
+            // get all contract codes
+            const overviews = import.meta.glob('/src/lib/content/flownaut/**/**/contracts/*.cdc');
+            const iterableFiles = Object.entries(overviews);
+
+            const thisLevelNotStandardFiles = iterableFiles.filter(([path]) => {
+                return path.split('/')[5] == levelId
+            })
+
+            const allContracts = await Promise.all(
+                thisLevelNotStandardFiles.map(async ([path, resolver], index) => {
+                    const contractName = path.split('/')[8].split('.')[0];
+                    console.log(contractName)
+                    const contractCode = (await import(`../../../content/flownaut/${levelId}/en/contracts/${contractName}.cdc?raw`)).default;
+                    return contractCode;
+                })
+            );
+            return await createNewInstanceExecution(levelId, allContracts, saveLevelStatus);
         } catch (e) {
+            console.log(e);
+            return
             // there is no contract to deploy
             const response = await fetch('/api/flownaut/new-instance', {
                 method: 'POST',

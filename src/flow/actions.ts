@@ -21,11 +21,12 @@ export const unauthenticate = () => fcl.unauthenticate();
 export const logIn = async () => await fcl.logIn();
 export const signUp = () => fcl.signUp();
 
-async function createNewInstance(levelId: string) {
-	const contractCode = (await import(`../lib/content/flownaut/${levelId}/en/contract.cdc?raw`)).default;
-	const replaceImports = replaceWithProperValues(contractCode);
-	const hexCode = Buffer.from(replaceImports).toString('hex');
-	const contractName = getContractNameFromContractCode(contractCode);
+async function createNewInstance(levelId: string, contractCodes: string[]) {
+	console.log(contractCodes)
+	// const replaceImports = replaceWithProperValues(contractCode);
+	// const hexCode = Buffer.from(replaceImports).toString('hex');
+	// const contractName = getContractNameFromContractCode(contractCode);
+	return
 
 	let deployCode;
 	try {
@@ -73,13 +74,13 @@ async function createNewInstance(levelId: string) {
 	});
 }
 
-export const createNewInstanceExecution = (levelId: string, actionAfterSucceed: (res: TransactionStatusObject) => Promise<ActionExecutionResult>) =>
-	executeTransaction(() => createNewInstance(levelId), actionAfterSucceed);
+export const createNewInstanceExecution = (levelId: string, contractCodes: string[], actionAfterSucceed: (res: TransactionStatusObject) => Promise<ActionExecutionResult>) =>
+	executeTransaction(() => createNewInstance(levelId, contractCodes), actionAfterSucceed);
 
 export const getBalance = async (address: string) => {
 	try {
 		return await fcl.query({
-			cadence: replaceWithProperValues(getBalanceScript),
+			cadence: replaceWithProperValues(getBalanceScript, undefined),
 			args: (arg, t) => [arg(address, t.Address)]
 		});
 	} catch (e) {

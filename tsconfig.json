@@ -10,5 +10,8 @@
 		"sourceMap": true,
 		"strict": true
 	},
-	"exclude": ["src/flow/*", "src/flow/**/*.js"]
+	"exclude": [
+		"src/flow/*",
+		"src/flow/**/*.js"
+	]
 }
