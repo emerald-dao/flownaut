@@ -20,14 +20,5 @@ Here are the steps to add a level:
     }
     ```
 
-- (*OPTIONAL*) `contract.cdc` - the contract to be deployed when the user clicks "Start Level". If no contract is needed, don't include this file.
+- `contracts` folder - a folder containing all of the Cadence contracts that need to be deployed for your level.
 - (*OPTIONAL*) `deploy.cdc` - a custom deploy script to be used when the user clicks "Start Level". Can be used to set up user storage like initializing Vaults or NFT Collections and stuff like that.
-
-*Note*: If your `contract.cdc`, `deploy.cdc`, or `success.cdc` files import any of the following common contracts below, simply add a `utility` folder with those contracts in it. See the `scam-coin` folder for an example.
-    - FlowToken
-    - FungibleToken
-    - NonFungibleToken
-    - FiatToken
-    - FUSD
-    - MetadataViews
-    - FungibleTokenMetadataViews

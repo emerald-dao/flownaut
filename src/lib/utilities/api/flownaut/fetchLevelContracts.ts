@@ -14,15 +14,16 @@ export const fetchLevelContracts = async (
     }
   }
 
+  // for each contract, get what dependencies it relies on
   let contractDependencies: { [contractName: string]: string[] } = {}
   for (const contractName in allContracts) {
     const dependencies = getDependencies(allContracts[contractName], Object.keys(allContracts));
     contractDependencies[contractName] = dependencies;
   }
 
-  const deployOrder = tsort(createEdges(contractDependencies)).filter(contractName => {
-    const isNotStandardContract = !addresses[contractName];
-    return isNotStandardContract;
+  // order the depencies for deployment
+  const deployOrder = orderDependencies(contractDependencies).filter(contractName => {
+    return !addresses[contractName];
   })
   return { allContracts, deployOrder };
 };
@@ -44,46 +45,26 @@ function getDependencies(code: string, contractNames: string[]) {
   return dependencies;
 }
 
-function tsort(edges) {
-  let nodes = {}, sorted = [], visited = {};
+function orderDependencies(contractDependencies) {
+  var keys = Object.keys(contractDependencies),
+    used = new Set,
+    result = [],
+    i, item, length;
 
-  let Node = function (id) {
-    this.id = id;
-    this.afters = [];
-  }
+  do {
+    length = keys.length;
+    i = 0;
+    while (i < keys.length) {
+      if (contractDependencies[keys[i]].every(Set.prototype.has, used)) {
+        item = keys.splice(i, 1)[0];
+        result.push(item);
+        used.add(item);
+        continue;
+      }
+      i++;
+    }
+  } while (keys.length && keys.length !== length)
+  result.push(...keys);
 
-  edges.forEach((v) => {
-    let from = v[0], to = v[1];
-    if (!nodes[from]) nodes[from] = new Node(from);
-    if (!nodes[to]) nodes[to] = new Node(to);
-    nodes[from].afters.push(to);
-  });
-
-  Object.keys(nodes).forEach(function visit(idstr, ancestors) {
-    let node = nodes[idstr], id = node.id;
-
-    if (visited[idstr]) return;
-    if (!Array.isArray(ancestors)) ancestors = [];
-
-    ancestors.push(id);
-    visited[idstr] = true;
-    node.afters.forEach(function (afterID) {
-      if (ancestors.indexOf(afterID) >= 0)
-        throw new Error('closed chain : ' + afterID + ' is in ' + id);
-      visit(afterID.toString(), ancestors.map(function (v) { return v }));
-    });
-    sorted.unshift(id);
-  });
-
-  return sorted;
-}
-
-const createEdges = (dep) => {
-  let result = []
-  Object.keys(dep).forEach(key => {
-    dep[key].forEach(n => {
-      result.push([n, key])
-    })
-  })
-  return result
+  return result;
 }
