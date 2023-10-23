@@ -3,19 +3,15 @@ import { addresses } from "$stores/flow/FlowStore";
 export const fetchLevelContracts = async (
   levelId: string
 ) => {
-  let contracts = import.meta.glob('/src/lib/content/flownaut/*/*/*/*');
-
-  const iterableFiles = Object.keys(contracts);
-
-  const thisLevelFiles = iterableFiles.filter((path) => {
-    return path.split('/')[5] == levelId;
-  })
-
+  // the `{ as: 'raw' }` makes it so that we can import the content directly as a string! Woooohoooo
+  let contracts = import.meta.glob('/src/lib/content/flownaut/*/*/*/*.cdc', { as: 'raw' });
   let allContracts: { [contractName: string]: string } = {};
-  for (const path of thisLevelFiles) {
-    const contractName = path.split('/')[8].split('.')[0];
-    const contractCode = (await import(`../../../content/flownaut/${levelId}/en/contracts/${contractName}.cdc?raw`)).default;
-    allContracts[contractName] = contractCode
+  for (const path in contracts) {
+    if (path.split('/')[5] == levelId) {
+      const contractName = (path.split('/')[8]).split('.')[0];
+      const mod = await contracts[path]()
+      allContracts[contractName] = mod;
+    }
   }
 
   let contractDependencies: { [contractName: string]: string[] } = {}
