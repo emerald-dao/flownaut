@@ -1,7 +1,6 @@
 import { sansPrefix, withPrefix } from "@onflow/fcl";
 
 const getSignature = async (signable) => {
-  console.log({ signable })
   const response = await fetch('/api/flownaut/deploy-contract', {
     method: "POST",
     headers: { "Content-Type": "application/json" },
