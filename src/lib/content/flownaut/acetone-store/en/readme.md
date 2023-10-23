@@ -1,8 +1,8 @@
 Reduce the `totalBalance` to zero!
 
 ```cadence
-import AcetoneToken from "./utility/AcetoneToken.cdc"
-import FungibleToken from "./utility/FungibleToken.cdc"
+import AcetoneToken from "./AcetoneToken.cdc"
+import FungibleToken from "./FungibleToken.cdc"
 
 pub contract AcetoneStore {
    pub var totalBalance: UFix64

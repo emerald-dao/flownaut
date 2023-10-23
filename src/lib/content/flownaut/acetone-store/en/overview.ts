@@ -8,6 +8,6 @@ export const overview: Flownaut = {
 		avatarUrl: 'https://avatars.githubusercontent.com/u/14267423',
 		isVerified: true
 	},
-	description: `Let's empty the balance!`,
-	difficulty: DifficultyEnum.Intermediate
+	description: `Based on the reentrancy attack found in Uniswap, find a way to drain the balance.`,
+	difficulty: DifficultyEnum.Advanced
 };
