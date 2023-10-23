@@ -1,4 +1,4 @@
-import Password from "./contract.cdc"
+import Password from "./contracts/Password.cdc"
 
 pub fun main(user: Address): Bool {
     let cap = Password.getPublicPasswordCap()

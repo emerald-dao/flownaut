@@ -1,5 +1,5 @@
-import ExampleToken from "./contract.cdc"
-import FungibleToken from "./utility/FungibleToken.cdc"
+import ExampleToken from "./contracts/ExampleToken.cdc"
+import FungibleToken from "./contracts/FungibleToken.cdc"
 
 pub fun main(user: Address): Bool {
     let publicAccount: PublicAccount = getAccount(user)

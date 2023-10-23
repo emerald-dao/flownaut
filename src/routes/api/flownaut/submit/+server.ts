@@ -30,11 +30,10 @@ export const POST = async ({ request }) => {
     }
 
     const successScript = await import(`../../../../lib/content/flownaut/${level_id}/en/success.cdc?raw`);
-    const cadence = successScript.default.replace('"./contract.cdc"', data[0].contract_address);
 
     try {
         const scriptResult = await query({
-            cadence: replaceWithProperValues(cadence),
+            cadence: replaceWithProperValues(successScript.default, data[0].contract_address),
             args: (arg, t) => [
                 arg(user.addr, t.Address)
             ]

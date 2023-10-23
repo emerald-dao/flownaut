@@ -1,31 +1,30 @@
-import { addresses } from '$stores/flow/FlowStore';
 import { transactionStore } from '$stores/flow/TransactionStore';
 import * as fcl from '@onflow/fcl';
 import type { TransactionStatusObject } from '@onflow/fcl';
 import type { ActionExecutionResult } from '$lib/stores/custom/steps/step.interface';
 import { ECurrencies } from '$lib/types/common/enums';
 import { removeWhitespace } from '$lib/utilities/dataTransformation/removeWhitespace';
+import { addresses } from '$stores/flow/FlowStore';
+// import flowJSON from '../../flow.json';
 
-export function replaceWithProperValues(script: string) {
-  return (
-    script
-      // For Tx/Scripts
-      .replace('"../utility/FlowToken.cdc"', addresses.FlowToken)
-      .replace('"../utility/FUSD.cdc"', addresses.FUSD)
-      .replace('"../utility/FiatToken.cdc"', addresses.FiatToken)
-      .replace('"../utility/FungibleToken.cdc"', addresses.FungibleToken)
-      .replace('"../utility/FlowToken.cdc"', addresses.FungibleTokenMetadataViews)
-      .replace('"../utility/FlowToken.cdc"', addresses.NonFungibleToken)
-      .replace('"../utility/FlowToken.cdc"', addresses.MetadataViews)
-      // For Flownaut
-      .replace('"./utility/FlowToken.cdc"', addresses.FlowToken)
-      .replace('"./utility/FUSD.cdc"', addresses.FUSD)
-      .replace('"./utility/FiatToken.cdc"', addresses.FiatToken)
-      .replace('"./utility/FungibleToken.cdc"', addresses.FungibleToken)
-      .replace('"./utility/FlowToken.cdc"', addresses.FungibleTokenMetadataViews)
-      .replace('"./utility/FlowToken.cdc"', addresses.NonFungibleToken)
-      .replace('"./utility/FlowToken.cdc"', addresses.MetadataViews)
-  );
+export function replaceWithProperValues(cadence: String, defaultContractAddress: string | undefined) {
+  let broken = cadence.split(/\s/g);
+  for (let i = 0; i < broken.length; i++) {
+    if (broken[i] == "import" && broken[i + 2] == "from") {
+      let contractAddress = addresses[broken[i + 1]] || defaultContractAddress;
+      if (!contractAddress.startsWith('0x')) {
+        contractAddress = '0x' + contractAddress;
+      }
+      cadence = cadence.replace(broken[i + 3], contractAddress)
+    } else if (
+      broken[i] == "transaction(" ||
+      (broken[i] == "pub" && broken[i + 1] == "fun" && broken[i + 2] == "main") ||
+      (broken[i] == "pub" && broken[i + 1] == "contract")
+    ) {
+      break;
+    }
+  }
+  return cadence;
 }
 
 export function switchToToken(script: string, currency: ECurrencies) {

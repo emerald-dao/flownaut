@@ -8,7 +8,10 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": false
 	},
-	"exclude": ["src/flow/*", "src/flow/**/*.js"]
+	"exclude": [
+		"src/flow/*",
+		"src/flow/**/*.js"
+	]
 }

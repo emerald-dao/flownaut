@@ -1,6 +1,6 @@
-import ExampleToken from "./contract.cdc"
-import FungibleToken from "./utility/FungibleToken.cdc"
-import FlowToken from "./utility/FlowToken.cdc" 
+import ExampleToken from "./contracts/ExampleToken.cdc"
+import FungibleToken from "./contracts/FungibleToken.cdc"
+import FlowToken from "./contracts/FlowToken.cdc" 
 
 pub fun main(user: Address): Bool {
     let authAccount: AuthAccount = getAuthAccount(user)

@@ -3,6 +3,8 @@ import { get } from "svelte/store";
 import type { TransactionStatusObject } from '@onflow/fcl';
 import { createNewInstanceExecution } from "$flow/actions";
 import type { ActionExecutionResult } from "$stores/custom/steps/step.interface";
+import { fetchLevelContracts } from "./fetchLevelContracts";
+// import flowJSON from '../../../../../flow.json';
 
 export async function createNewInstance(levelId: string) {
     try {
@@ -29,26 +31,8 @@ export async function createNewInstance(levelId: string) {
             return result;
         }
 
-        try {
-            // tests to see if we need to deploy a contract
-            const contractCode = (await import(`../../../../lib/content/flownaut/${levelId}/en/contract.cdc?raw`)).default;
-            return await createNewInstanceExecution(levelId, saveLevelStatus);
-        } catch (e) {
-            // there is no contract to deploy
-            const response = await fetch('/api/flownaut/new-instance', {
-                method: 'POST',
-                body: JSON.stringify({
-                    user: get(user),
-                    level_id: levelId,
-                    contract_address: null
-                }),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            });
-            const result = await response.json();
-            return result;
-        }
+        const levelContracts = await fetchLevelContracts(levelId);
+        return await createNewInstanceExecution(levelId, levelContracts, saveLevelStatus);
     } catch (e) {
         console.error(e)
         return { error: e };

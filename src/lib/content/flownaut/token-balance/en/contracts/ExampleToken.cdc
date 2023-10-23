@@ -1,4 +1,4 @@
-import FungibleToken from "./utility/FungibleToken.cdc"
+import FungibleToken from "./FungibleToken.cdc"
 
 pub contract ExampleToken: FungibleToken {
 
