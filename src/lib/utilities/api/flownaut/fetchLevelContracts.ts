@@ -3,7 +3,7 @@ import { addresses } from "$stores/flow/FlowStore";
 export const fetchLevelContracts = async (
   levelId: string
 ) => {
-  let contracts = import.meta.glob('/src/lib/content/flownaut/*/*/*/*.cdc');
+  let contracts = import.meta.glob('/src/lib/content/flownaut/*/*/*/*');
 
   const iterableFiles = Object.keys(contracts);
 
