@@ -27,7 +27,7 @@ pub contract Password {
       var words: [UInt8] = []
       var count = 0
       while count < passwordLength {
-         words.append(UInt8(unsafeRandom() % 26) + 65)
+         words.append(UInt8(revertibleRandom() % 26) + 65)
          count = count + 1
       }
       return String.fromUTF8(words)!
