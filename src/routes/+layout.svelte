@@ -11,10 +11,8 @@
 	import { theme } from '$stores/ThemeStore';
 	import { logIn, unauthenticate } from '$flow/actions';
 	import { user } from '$stores/flow/FlowStore';
-	import { getFindProfile } from '$flow/utils';
 	import LocaleSwitcher from '$lib/components/i18n/LocaleSwitcher.svelte';
 	import { network } from '$flow/config';
-	import { page } from '$app/stores';
 	import { transactionStore } from '$stores/flow/TransactionStore';
 
 	export let data;
@@ -34,6 +32,18 @@
 		}
 	];
 
+	let profile;
+	$: if ($user.addr) {
+		profile = {
+			address: $user.addr,
+			avatar: '/new-avatar.png',
+			name: 'Traveler',
+			type: 'random'
+		};
+	} else {
+		profile = null;
+	}
+
 	export const avatarDropdownNav = [];
 
 	$: headerWidth = 'large'; // $page.params.lesson ? 'large' : 'medium';
@@ -42,6 +52,8 @@
 <TransactionModal
 	transactionInProgress={$transactionStore.progress}
 	transactionStatus={$transactionStore.transaction}
+	transactionId={$transactionStore.transactionId}
+	{network}
 	on:close={() => transactionStore.resetTransaction()}
 />
 
@@ -49,9 +61,9 @@
 	themeStore={theme}
 	{logIn}
 	{unauthenticate}
-	{getFindProfile}
 	{navElements}
 	user={$user}
+	{profile}
 	{network}
 	avatarDropDownNavigation={avatarDropdownNav}
 	logoHref={`/${$locale}/`}
