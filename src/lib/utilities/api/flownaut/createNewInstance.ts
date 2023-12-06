@@ -6,7 +6,7 @@ import type { ActionExecutionResult } from "$stores/custom/steps/step.interface"
 import { fetchLevelContracts } from "./fetchLevelContracts";
 // import flowJSON from '../../../../../flow.json';
 
-export async function createNewInstance(levelId: string) {
+export async function createNewInstance(levelId: string, lang: string) {
     try {
         const saveLevelStatus: (
             res: TransactionStatusObject
@@ -31,7 +31,7 @@ export async function createNewInstance(levelId: string) {
             return result;
         }
 
-        const levelContracts = await fetchLevelContracts(levelId);
+        const levelContracts = await fetchLevelContracts(levelId, lang);
         return await createNewInstanceExecution(levelId, levelContracts, saveLevelStatus);
     } catch (e) {
         console.error(e)

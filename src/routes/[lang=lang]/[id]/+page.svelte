@@ -23,7 +23,7 @@
 
 	async function startLevel() {
 		startLevelButtonState = 'loading';
-		const result = await createNewInstance($page.params.id);
+		const result = await createNewInstance($page.params.id, $page.params.lang);
 		if (result.error) {
 			console.error(result.error);
 			startLevelButtonState = 'disabled';

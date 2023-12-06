@@ -1,13 +1,14 @@
 import { addresses } from "$stores/flow/FlowStore";
 
 export const fetchLevelContracts = async (
-  levelId: string
+  levelId: string,
+  lang: string
 ) => {
   // the `{ as: 'raw' }` makes it so that we can import the content directly as a string! Woooohoooo
   let contracts = import.meta.glob('/src/lib/content/flownaut/*/*/*/*.cdc', { as: 'raw' });
   let allContracts: { [contractName: string]: string } = {};
   for (const path in contracts) {
-    if (path.split('/')[5] == levelId) {
+    if (path.split('/')[5] == levelId && path.split('/')[6] == lang) {
       const contractName = (path.split('/')[8]).split('.')[0];
       const mod = await contracts[path]()
       allContracts[contractName] = mod;
