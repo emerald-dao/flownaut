@@ -5,6 +5,7 @@ import type { ActionExecutionResult } from '$lib/stores/custom/steps/step.interf
 import { ECurrencies } from '$lib/types/common/enums';
 import { removeWhitespace } from '$lib/utilities/dataTransformation/removeWhitespace';
 import { addresses } from '$stores/flow/FlowStore';
+import dappInfo from '$lib/config/config';
 // import flowJSON from '../../flow.json';
 
 export function replaceWithProperValues(cadence: String, defaultContractAddress: string | undefined) {
@@ -158,7 +159,7 @@ export const verifyAccountOwnership = async (userObject) => {
   const accountProofService = userObject.services.find(
     (services) => services.type === 'account-proof'
   );
-  return await fcl.AppUtils.verifyAccountProof('Emerald Academy', accountProofService.data, {
+  return await fcl.AppUtils.verifyAccountProof(dappInfo.title, accountProofService.data, {
     fclCryptoContract: null
   });
 };

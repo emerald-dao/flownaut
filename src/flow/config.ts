@@ -24,7 +24,7 @@ const fclConfigInfo = {
 const resolver = async () => {
 	const nonce = '7f190deedcd3b0538b7cd0ebc1994ed40d9db16cc1a6fcc3e7a994240c14d86d';
 	return {
-		appIdentifier: 'Emerald Academy',
+		appIdentifier: dappInfo.title,
 		nonce
 	};
 };

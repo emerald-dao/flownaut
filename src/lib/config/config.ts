@@ -1,9 +1,9 @@
 const dappInfo = {
-	title: 'Emerald Academy',
-	description: 'SvelteKit Boilerplate for creating Flow dapps',
-	url: 'pending.com',
+	title: 'Flownaut',
+	description: 'A Web3/Cadence based wargame.',
+	url: 'https://flownaut.ecdao.org',
 	author: 'Emerald City DAO',
-	icon: 'https://i.imgur.com/KSL4gq0.png'
+	icon: 'https://i.imgur.com/XxjD3wF.png'
 };
 
 export default dappInfo;
