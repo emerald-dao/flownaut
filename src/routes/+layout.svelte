@@ -76,7 +76,7 @@
 <main>
 	<slot />
 </main>
-<Footer {navElements} logoHref={`/${$locale}/`} logoUrl="/ea-logo.png" logoText="Flownaut" />
+<!-- <Footer {navElements} logoHref={`/${$locale}/`} logoUrl="/ea-logo.png" logoText="Flownaut" /> -->
 
 <svelte:head>
 	<HeadHrefLangs />

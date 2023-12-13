@@ -24,7 +24,7 @@ When you do, a new contract (the one shown at the bottom of each level) will be 
 *You can always restart a level by clicking "Start Level" again.*
 
 ## Interact with the contract to complete the level
-To complete a level, you will have to interact with your contract on testnet. You can do your own way, or use tools like [Run](https://run.ecdao.org) or [run.dnz.dev](https://run.dnz.dev/). 
+To complete a level, you will have to interact with your contract on testnet. You can do your own way, or use the tool at the bottom of each level to run transactions & scripts.
 
 When you know you have completed the level, click the "Submit" button at the bottom of the page. This uses a script to determine if you have completed it.
 

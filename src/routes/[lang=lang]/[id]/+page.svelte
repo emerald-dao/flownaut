@@ -102,10 +102,6 @@
 	/>
 </section>
 <section class="section-large main-section container-small">
-	<article>
-		<svelte:component this={data.readme} />
-	</article>
-
 	<div class="row-4">
 		<Button
 			on:click={$user.loggedIn ? startLevel : logIn}
@@ -137,6 +133,10 @@
 		{/if}
 	</div>
 
+	<article>
+		<svelte:component this={data.readme} />
+	</article>
+
 	<div class="bottom-wrapper">
 		{#if previousExample}
 			<a
@@ -167,6 +167,8 @@
 	</div>
 </section>
 
+<iframe src="https://run.dnz.dev/snippet/a6b48594e4faac3d" width="100%" height="700" />
+
 <Seo
 	title={`${data.overview.title} | Flownaut | Emerald Academy`}
 	description="A Cadence hacking game inspired by Ethernaut."
@@ -185,11 +187,12 @@
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-9);
+		padding: var(--space-9);
 
 		.bottom-wrapper {
 			display: flex;
 			flex-direction: column;
-			margin-top: var(--space-11);
+			// margin-top: var(--space-11);
 
 			@include mq(medium) {
 				display: grid;
@@ -208,11 +211,7 @@
 
 			.step-next {
 				grid-area: end;
-				margin-top: var(--space-4);
-
-				@include mq(medium) {
-					margin-top: 0;
-				}
+				margin-bottom: var(--space-8);
 			}
 
 			.each-adjacent-wrapper {
