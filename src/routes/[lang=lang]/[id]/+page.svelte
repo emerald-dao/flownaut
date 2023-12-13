@@ -167,7 +167,7 @@
 	</div>
 </section>
 
-<iframe src="https://run.dnz.dev/snippet/a6b48594e4faac3d" width="100%" height="700" />
+<iframe src="https://run.dnz.dev/snippet/8941d34800835dbc" width="100%" height="700" />
 
 <Seo
 	title={`${data.overview.title} | Flownaut | Emerald Academy`}
