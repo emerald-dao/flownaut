@@ -192,6 +192,7 @@
 		.bottom-wrapper {
 			display: flex;
 			flex-direction: column;
+			margin-bottom: var(--space-8);
 			// margin-top: var(--space-11);
 
 			@include mq(medium) {
@@ -211,7 +212,6 @@
 
 			.step-next {
 				grid-area: end;
-				margin-bottom: var(--space-8);
 			}
 
 			.each-adjacent-wrapper {
