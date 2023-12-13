@@ -9,7 +9,7 @@
 	import LevelStatus from '$lib/components/flownaut/LevelStatus.svelte';
 	import Author from '$lib/components/atoms/Author.svelte';
 	import { onMount } from 'svelte';
-	import { getBalance } from '$flow/actions';
+	import { getBalance, logIn } from '$flow/actions';
 	import DifficultyLabel from '$lib/components/flownaut/DifficultyLabel.svelte';
 
 	export let data;
@@ -19,7 +19,7 @@
 
 	$: findExampleIndex = data.content.findIndex((obj) => obj.slug === `flownaut/${$page.params.id}`);
 
-	$: startLevelButtonState = $user.loggedIn ? 'active' : 'disabled';
+	$: startLevelButtonState = 'active';
 
 	async function startLevel() {
 		startLevelButtonState = 'loading';
@@ -108,7 +108,7 @@
 
 	<div class="row-4">
 		<Button
-			on:click={startLevel}
+			on:click={$user.loggedIn ? startLevel : logIn}
 			size="large"
 			type="ghost"
 			color="neutral"
@@ -124,7 +124,8 @@
 				Restart Level
 			{/if}
 			{#if data.status === 'NOT LOGGED IN'}
-				Please log in
+				<Icon icon="tabler:wallet" />
+				Click here to log in
 			{/if}
 		</Button>
 
