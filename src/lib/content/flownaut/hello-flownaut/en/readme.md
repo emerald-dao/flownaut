@@ -17,9 +17,9 @@ Any errors or messages from the game will also appear here.
 To play the game, you will need test $FLOW. The easiest way to get some testnet $FLOW is via the [testnet faucet](https://testnet-faucet.onflow.org/fund-account).
 
 ## Starting a level
-To start a new level, click the "Start Level" button at the bottom of the page. When you do, a new contract (the one shown at the bottom of each level) will be deployed to a random testnet account. Go do it now and come back!
+To start a new level, click the "Start Level" button at the bottom of the page. 
 
-You should be prompted by your wallet of choice to authorize the transaction. Note that this is deploying a new contract in the blockchain and might take a few seconds, so please be patient when starting a new level!
+When you do, a new contract (the one shown at the bottom of each level) will be deployed to a random testnet account. That testnet account's address will appear in your console as `Contract Address`. *That is the contract you'll be interacting with.*
 
 *You can always restart a level by clicking "Start Level" again.*
 
@@ -29,7 +29,7 @@ To complete a level, you will have to interact with your contract on testnet. Yo
 When you know you have completed the level, click the "Submit" button at the bottom of the page. This uses a script to determine if you have completed it.
 
 ## Completing this level
-For this level, you will be deploying a very basic contract. All you have to do is change the greeting to `You have been hacked!`.
+For this level, all you have to do is change the greeting to `You have been hacked!`.
 
 ```cadence
 pub contract HelloFlownaut {
