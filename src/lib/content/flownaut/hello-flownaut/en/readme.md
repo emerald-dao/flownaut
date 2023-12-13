@@ -17,7 +17,7 @@ Any errors or messages from the game will also appear here.
 To play the game, you will need test $FLOW. The easiest way to get some testnet $FLOW is via the [testnet faucet](https://testnet-faucet.onflow.org/fund-account).
 
 ## Starting a level
-To start a new level, click the "Start Level" button at the bottom of the page. 
+To start a new level, click the "Start Level" button at the top of the page (or the "Click here to log in" button if you haven't logged in yet).
 
 When you do, a new contract (the one shown at the bottom of each level) will be deployed to a random testnet account. That testnet account's address will appear in your console as `Contract Address`. *That is the contract you'll be interacting with.*
 
