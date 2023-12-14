@@ -167,7 +167,9 @@
 	</div>
 </section>
 
-<iframe src="https://run.dnz.dev/snippet/8941d34800835dbc" width="100%" height="700" />
+<section class="section-large main-section container-small iframe-container">
+	<iframe src="https://run.dnz.dev/snippet/8941d34800835dbc" width="100%" height="700" />
+</section>
 
 <Seo
 	title={`${data.overview.title} | Flownaut | Emerald Academy`}
@@ -229,5 +231,9 @@
 				}
 			}
 		}
+	}
+
+	.iframe-container {
+		padding-top: 0;
 	}
 </style>
