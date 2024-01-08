@@ -8,6 +8,6 @@ export const overview: Flownaut = {
 		avatarUrl: 'https://avatars.githubusercontent.com/u/15198786?v=4',
 		isVerified: true
 	},
-	description: 'Use your psychic abilities to guess 10 coinflips in a row.',
+	description: 'Use your psychic abilities to guess 5 coinflips in a row.',
 	difficulty: DifficultyEnum.Novice
 };
