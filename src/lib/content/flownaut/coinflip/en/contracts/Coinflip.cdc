@@ -3,12 +3,8 @@ pub contract Coinflip {
     pub var consecutiveWins: UInt64
 
     pub fun flip(guess: Bool) {
-        let currentBlockId: [UInt8; 32] = getCurrentBlock().id
-        var seed: UInt256 = 0
-        for byte in currentBlockId {
-            seed = seed + UInt256(byte)
-        }
-        let flip: UInt256 = seed % 2
+        let randomNum: UInt64 = revertibleRandom()
+        let flip: UInt64 = randomNum % 2
         let side: Bool = flip == 1 ? true : false
         
         if side == guess {
