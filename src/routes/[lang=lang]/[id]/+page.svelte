@@ -169,6 +169,8 @@
 
 <section class="section-large main-section container-small iframe-container">
 	<iframe
+		style:display="none"
+		on:load={(e) => (e.srcElement.style.display = 'block')}
 		src="https://run.dnz.dev/snippet/1a6d6b724ad4997f"
 		width="100%"
 		height="700"
