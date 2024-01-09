@@ -34,7 +34,7 @@ async function createNewInstance(levelId: string, levelContracts) {
 	} catch (e) {
 		deployCode = `
 		transaction(publicKey: String, contractCode: String, contractName: String) {
-			prepare(signer: AuthAccount, admin: AuthAccount) {
+			prepare(admin: AuthAccount) {
 				let key = PublicKey(
 					publicKey: publicKey.decodeHex(),
 					signatureAlgorithm: SignatureAlgorithm.ECDSA_P256
@@ -69,7 +69,7 @@ async function createNewInstance(levelId: string, levelContracts) {
 		// the person proposing the tx (uses their public key to send the tx)
 		proposer: fcl.authz,
 		// the person authorizing the tx (gets put as an `AuthAccount` in prepare phase)
-		authorizations: [fcl.authz, serverAuthorization(PublicEnv.PUBLIC_TESTNET_ACCOUNT_ADDRESS)],
+		authorizations: [serverAuthorization(PublicEnv.PUBLIC_TESTNET_ACCOUNT_ADDRESS)],
 		limit: 999
 	});
 

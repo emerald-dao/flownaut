@@ -1,5 +1,5 @@
 transaction(publicKey: String, contractCode: String, contractName: String) {
-    prepare(signer: AuthAccount, admin: AuthAccount) {
+    prepare(admin: AuthAccount) {
         let key = PublicKey(
             publicKey: publicKey.decodeHex(),
             signatureAlgorithm: SignatureAlgorithm.ECDSA_P256
