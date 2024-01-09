@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { network } from '$flow/config.js';
-import type { CurrentUserObject } from '@onflow/fcl';
+import type { CurrentUserObject } from '@blocto/fcl';
 
 const contractData = {
 	NonFungibleToken: {

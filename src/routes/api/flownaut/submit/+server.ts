@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 import { createClient } from '@supabase/supabase-js';
 import { env as PrivateEnv } from '$env/dynamic/private';
 import { env as PublicEnv } from '$env/dynamic/public';
-import { query } from '@onflow/fcl';
+import { query } from '@blocto/fcl';
 import { replaceWithProperValues, verifyAccountOwnership } from '$flow/utils.js';
 
 const academySupabase = createClient(PublicEnv.PUBLIC_ACADEMY_SUPABASE_URL, PrivateEnv.SUPABASE_ACADEMY_SERVICE_KEY);

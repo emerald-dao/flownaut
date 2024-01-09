@@ -1,4 +1,4 @@
-import { config } from '@onflow/fcl';
+import { config } from '@blocto/fcl';
 import dappInfo from '$lib/config/config';
 
 export const network = 'testnet';

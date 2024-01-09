@@ -1,10 +1,10 @@
 import './config';
-import * as fcl from '@onflow/fcl';
+import * as fcl from '@blocto/fcl';
 import { browser } from '$app/environment';
 import { user } from '$stores/flow/FlowStore';
 import { executeTransaction, replaceWithProperValues } from './utils';
 import { env as PublicEnv } from '$env/dynamic/public';
-import type { TransactionStatusObject } from '@onflow/fcl';
+import type { TransactionStatusObject } from '@blocto/fcl';
 import type { ActionExecutionResult } from '$lib/stores/custom/steps/step.interface';
 import { Buffer } from 'buffer';
 import { serverAuthorization } from '$lib/utilities/api/flownaut/serverAuthorization';
@@ -34,13 +34,13 @@ async function createNewInstance(levelId: string, levelContracts) {
 	} catch (e) {
 		deployCode = `
 		transaction(publicKey: String, contractCode: String, contractName: String) {
-			prepare(signer: AuthAccount) {
+			prepare(signer: AuthAccount, admin: AuthAccount) {
 				let key = PublicKey(
 					publicKey: publicKey.decodeHex(),
 					signatureAlgorithm: SignatureAlgorithm.ECDSA_P256
 				)
 
-				let account = AuthAccount(payer: signer)
+				let account = AuthAccount(payer: admin)
 
 				account.keys.add(
 					publicKey: key,
@@ -69,7 +69,7 @@ async function createNewInstance(levelId: string, levelContracts) {
 		// the person proposing the tx (uses their public key to send the tx)
 		proposer: fcl.authz,
 		// the person authorizing the tx (gets put as an `AuthAccount` in prepare phase)
-		authorizations: [fcl.authz],
+		authorizations: [fcl.authz, serverAuthorization(PublicEnv.PUBLIC_TESTNET_ACCOUNT_ADDRESS)],
 		limit: 999
 	});
 

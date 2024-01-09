@@ -1,6 +1,6 @@
 import { transactionStore } from '$stores/flow/TransactionStore';
-import * as fcl from '@onflow/fcl';
-import type { TransactionStatusObject } from '@onflow/fcl';
+import * as fcl from '@blocto/fcl';
+import type { TransactionStatusObject } from '@blocto/fcl';
 import type { ActionExecutionResult } from '$lib/stores/custom/steps/step.interface';
 import { ECurrencies } from '$lib/types/common/enums';
 import { removeWhitespace } from '$lib/utilities/dataTransformation/removeWhitespace';

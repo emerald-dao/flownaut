@@ -1,4 +1,4 @@
-import { sansPrefix, withPrefix } from "@onflow/fcl";
+import { sansPrefix, withPrefix } from "@blocto/fcl";
 
 const getSignature = async (signable) => {
   const response = await fetch('/api/flownaut/deploy-contract', {

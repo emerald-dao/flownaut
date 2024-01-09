@@ -50,6 +50,7 @@
 		"@emerald-dao/component-library": "^6.5.5",
 		"@emerald-dao/design-system": "^2.0.0",
 		"@onflow/fcl": "^1.8.1",
+		"@blocto/fcl": "1.4.0",
 		"@splidejs/svelte-splide": "^0.2.9",
 		"@supabase/supabase-js": "^2.7.1",
 		"@sveltejs/adapter-vercel": "^1.0.6",

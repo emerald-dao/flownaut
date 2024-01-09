@@ -1,6 +1,6 @@
 import { user } from "$stores/flow/FlowStore";
 import { get } from "svelte/store";
-import type { TransactionStatusObject } from '@onflow/fcl';
+import type { TransactionStatusObject } from '@blocto/fcl';
 import { createNewInstanceExecution } from "$flow/actions";
 import type { ActionExecutionResult } from "$stores/custom/steps/step.interface";
 import { fetchLevelContracts } from "./fetchLevelContracts";
